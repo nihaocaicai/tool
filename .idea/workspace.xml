@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="242" column="12" selection-start-line="242" selection-start-column="12" selection-end-line="242" selection-end-column="12" />
+            <state relative-caret-position="420">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -34,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/tool/api/dao/UserDaoTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
+            <state relative-caret-position="361">
               <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -125,7 +125,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-164" />
     <option name="y" value="-18" />
     <option name="width" value="1943" />
@@ -262,7 +262,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554216653051" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554216889245" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -645,14 +645,11 @@
       <workItem from="1554010139651" duration="18696000" />
       <workItem from="1554038146535" duration="470000" />
       <workItem from="1554038817438" duration="3482000" />
-      <workItem from="1554128385484" duration="31037000" />
+      <workItem from="1554128385484" duration="31246000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="UserDaoTest_testQueryById - 2019.04.02 at 20h 15m 08s.xml">
-      <configuration name="UserDaoTest.testQueryById" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="UserDaoTest_testQueryById - 2019.04.02 at 20h 16m 42s.xml">
       <configuration name="UserDaoTest.testQueryById" configurationId="JUnit" />
     </history-entry>
@@ -680,9 +677,12 @@
     <history-entry file="UserDaoTest_testQueryById - 2019.04.02 at 22h 32m 41s.xml">
       <configuration name="UserDaoTest.testQueryById" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="UserDaoTest_testQueryById - 2019.04.02 at 22h 51m 00s.xml">
+      <configuration name="UserDaoTest.testQueryById" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53685000" />
+    <option name="totallyTimeSpent" value="53894000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -969,7 +969,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tool/api/dao/UserDaoTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="361">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -979,8 +979,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="242" column="12" selection-start-line="242" selection-start-column="12" selection-end-line="242" selection-end-column="12" />
+        <state relative-caret-position="420">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
         </state>
       </provider>
     </entry>
