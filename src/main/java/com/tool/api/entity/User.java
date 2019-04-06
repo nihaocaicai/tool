@@ -64,4 +64,17 @@ public class User {
     public void setUser_motto(String user_motto) {
         this.user_motto = user_motto;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id='" + user_id + '\'' +
+                ", user_name='" + user_name + '\'' +
+                ", user_avatar='" + user_avatar + '\'' +
+                ", user_gender=" + user_gender +
+                ", user_city='" + user_city + '\'' +
+                ", user_target='" + user_target + '\'' +
+                ", user_motto='" + user_motto + '\'' +
+                '}';
+    }
 }

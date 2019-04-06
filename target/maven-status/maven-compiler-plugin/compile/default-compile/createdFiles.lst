@@ -1,5 +1,0 @@
-com\tool\api\dao\UserDao.class
-com\tool\api\entity\User.class
-com\tool\api\service\impl\UserServivcelmpl.class
-com\tool\api\service\UserService.class
-com\tool\api\controller\UserController.class

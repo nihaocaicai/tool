@@ -10,7 +10,7 @@ import com.tool.api.service.UserService;
 
 @Service
 @Transactional
-public class UserServivcelmpl implements UserService{
+public class UserServicelmpl implements UserService{
 //    注解注入UserDao
     @Autowired
     private UserDao userDao;

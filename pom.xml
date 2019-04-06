@@ -19,10 +19,10 @@
         <!-- mysql驱动版本号 -->
         <mysql-driver.version>5.1.40</mysql-driver.version>
         <!-- log4j日志包版本号 -->
-        <log4j.version>2.7</log4j.version>
-        <commons-logging.version>1.2</commons-logging.version>
+        <!--<log4j.version>2.7</log4j.version>-->
+        <!--<commons-logging.version>1.2</commons-logging.version>-->
         <!-- 对象转 jackson 版本号 -->
-        <jackson.version>2.8.11.3</jackson.version>
+        <jackson.version>2.7.0</jackson.version>
         <!--spring security version-->
         <spring.security.version>4.2.3.RELEASE</spring.security.version>
     </properties>
@@ -96,12 +96,14 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!-- javaee 7.0 -->
+
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
         </dependency>
+
         <!-- ######## json 依赖包 start ################################-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -221,16 +223,16 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.3.3</version>
         </dependency>
-        <dependency>
-            <groupId>commons-logging</groupId>
-            <artifactId>commons-logging</artifactId>
-            <version>${commons-logging.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>commons-logging</groupId>-->
+            <!--<artifactId>commons-logging</artifactId>-->
+            <!--<version>${commons-logging.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.logging.log4j</groupId>-->
+            <!--<artifactId>log4j-core</artifactId>-->
+            <!--<version>${log4j.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
@@ -239,6 +241,29 @@
     </dependencies>
 
     <build>
-    <finalName>${project.artifactId}</finalName>
+    <finalName>tool</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 指定端口 -->
+                    <port>8080</port>
+                    <!-- 请求路径 -->
+                    <path>/tool</path>
+                    <uriEncoding>UTF-8</uriEncoding>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>
