@@ -23,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+            <state relative-caret-position="336">
+              <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -834,7 +834,7 @@
       <workItem from="1554038817438" duration="3482000" />
       <workItem from="1554128385484" duration="32945000" />
       <workItem from="1554433807288" duration="10756000" />
-      <workItem from="1554566251821" duration="217000" />
+      <workItem from="1554566251821" duration="336000" />
     </task>
     <servers />
   </component>
@@ -871,7 +871,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66566000" />
+    <option name="totallyTimeSpent" value="66685000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1133,8 +1133,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+        <state relative-caret-position="336">
+          <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
         </state>
       </provider>
     </entry>
