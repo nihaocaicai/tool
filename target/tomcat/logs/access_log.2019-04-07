@@ -1,0 +1,3 @@
+0:0:0:0:0:0:0:1 - - [07/Apr/2019:14:24:26 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [07/Apr/2019:14:24:30 +0800] "GET /tool/findUserById?id=abcddsssagafafa HTTP/1.1" 200 549 http-bio-8080-exec-2 3909
+0:0:0:0:0:0:0:1 - - [07/Apr/2019:14:24:30 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0

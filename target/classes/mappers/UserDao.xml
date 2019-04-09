@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tool.api.dao.UserDao">
+
+    <resultMap id="userMap" type="com.tool.api.entity.User">
+        <id property="user_id" column="user_id"/> <!--id-->
+        <result property="user_name" column="user_name"/>
+        <result property="user_avatar" column="user_avatar"/>
+        <result property="user_gender" column="user_gender"/>
+        <result property="user_city" column="user_city"/>
+        <result property="user_target" column="user_target"/>
+        <result property="user_motto" column="user_motto"/>
+    </resultMap>
+
+    <!--根据id查询用户信息-->
+    <select id="findUserById" parameterType="String" resultType="com.tool.api.entity.User">
+        select * from user where user_id=#{id}
+    </select>
+</mapper>
