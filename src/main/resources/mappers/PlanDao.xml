@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tool.api.dao.PlanDao">
+	<!--根据id查询用户计划信息 -->
+	<select id="findPlanById" parameterType="String"
+		resultType="com.tool.api.entity.Plan">
+		select * from Plan where user_id=#{user_id}
+	</select>
+	
+	<!-- 根据时间和id来确定某用户某个时间段的计划 -->
+	 <select id = "findOnlyPlanById" parameterType = "java.util.HashMap" resultType = "com.tool.api.entity.Plan">
+    	select * from Plan where user_id = #{user_id} and plan_date = #{plan_date}
+    </select>
+
+	<!-- 插入一条用户计划记录 -->
+	<insert id="insertPlan" parameterType="com.tool.api.entity.Plan">
+		insert into Plan(user_id, plan_content, plan_date)
+		values (#{user_id}, #{plan_content}, #{plan_date})
+	</insert>
+	
+	<!-- 更新一条用户计划记录 -->
+	<update id = "updatePlan" parameterType = "com.tool.api.entity.Plan">
+    	update Plan
+    		set Plan.plan_content = #{plan_content}
+    			where user_id = #{user_id} and plan_date = #{plan_date}
+    </update>
+
+	<!-- 删除一条用户计划记录 -->
+	<delete id="deletePlan" parameterType="java.util.HashMap">
+		delete from Plan where user_id = #{user_id} and plan_date = #{plan_date}
+	</delete>
+</mapper>

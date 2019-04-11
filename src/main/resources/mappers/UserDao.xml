@@ -13,8 +13,40 @@
         <result property="user_motto" column="user_motto"/>
     </resultMap>
 
-    <!--根据id查询用户信息-->
-    <select id="findUserById" parameterType="String" resultType="com.tool.api.entity.User">
+    <!--
+     	根据id查询用户信息
+    	public User findUserById(String id);
+      -->
+    <select id="findUserById" parameterType="String" resultType="user">
         select * from user where user_id=#{id}
     </select>
+    
+    
+    <!-- 
+    	插入一个新的用户
+    	public void insertUser(User user);
+     -->
+    <insert id="insertUser" parameterType="com.tool.api.entity.User">
+    	insert into user(user_id, user_name, user_avatar, user_gender, user_city, user_target, user_motto) 
+    	values (#{user_id}, #{user_name}, #{user_avatar}, #{user_gender}, #{user_city}, #{user_target}, #{user_motto})
+    </insert>
+    
+    <!-- 
+    	更新某个用户信息
+    	public void updateUser(User user);
+     -->
+     <update id="updateUser">
+     	update user 
+     		set user_name = #{user_name}, user_avatar = #{user_avatar}, user_gender = #{user_gender}, user_city = #{user_city},
+     			user_target = #{user_target}, user_motto = #{user_motto} 
+     			where user_id = #{user_id}
+     </update>
+     
+     <!-- 
+     	删除某个用户
+     	public void deleteUser(String id);
+      -->
+     <delete id="deleteUser">
+     	delete from user where user_id = #{id}
+     </delete>
 </mapper>

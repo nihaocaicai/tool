@@ -8,8 +8,22 @@ public class User {
     private String user_city;
     private String user_target;
     private String user_motto;
+    
+    
 
-    public String getUser_id() {
+    public User(String user_id, String user_name, String user_avatar, Integer user_gender, String user_city,
+			String user_target, String user_motto) {
+		super();
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.user_avatar = user_avatar;
+		this.user_gender = user_gender;
+		this.user_city = user_city;
+		this.user_target = user_target;
+		this.user_motto = user_motto;
+	}
+
+	public String getUser_id() {
         return user_id;
     }
 

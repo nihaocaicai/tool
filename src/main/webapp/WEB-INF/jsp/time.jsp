@@ -1,0 +1,22 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
+<html>
+<head>
+    <title>time</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>time_id</td>
+        <td>user_id</td>
+        <td>time_content</td>
+        <td>time_date</td>
+    </tr>
+    <tr>
+        <td>${time.time_id}</td>
+        <td>${time.user_id}</td>
+        <td>${time.time_content}</td>
+        <td>${time.time_date}</td>
+    </tr>
+</table>
+</body>
+</html>

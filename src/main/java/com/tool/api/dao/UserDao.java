@@ -8,5 +8,19 @@ public interface UserDao {
     * 根据id查询用户信息
     * */
     public User findUserById(String id);
-
+    
+    /*
+     * 新增加一条用户记录
+     */
+    public void insertUser(User user);
+    
+    /*
+     * 更新用户信息
+     */
+    public void updateUser(User user);
+    
+    /*
+     * 删除用户信息
+     */
+    public void deleteUser(String id);
 }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tool.api.dao.TimeDao">
+	<!--根据id查询用户信息-->
+    <select id="findTimeById" parameterType="String" resultType="com.tool.api.entity.Datetime">
+        select * from datetime where user_id=#{user_id}
+    </select>
+    
+    <!-- 根据id和时间来取出某用户在某个时间段的信息 -->
+    <select id = "findOnlyTimeById" parameterType = "java.util.HashMap" resultType = "com.tool.api.entity.Datetime">
+    	select * from datetime where user_id = #{user_id} and time_date = #{time_date}
+    </select>
+    
+    <!-- 插入某用户一条时间安排信息 -->
+    <insert id = "insertTime" parameterType = "com.tool.api.entity.Datetime">
+    	insert into datetime(user_id, time_content, time_date) 
+    	values (#{user_id}, #{time_content}, #{time_date})
+    </insert>
+    
+    <!-- 更新某用户某时间段时间安排信息 -->
+    <update id = "updateTime" parameterType = "com.tool.api.entity.Datetime">
+    	update datetime
+    		set datetime.time_content = #{time_content}
+    			where user_id = #{user_id} and time_date = #{time_date}
+    </update>
+    
+    <!-- 删除某用户某时间段时间安排信息 -->
+    <delete id = "deleteTime" parameterType = "java.util.HashMap">
+    	delete from datetime where user_id = #{user_id} and time_date = #{time_date}
+    </delete>
+</mapper>
