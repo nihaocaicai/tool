@@ -1,10 +1,11 @@
 package com.tool.api.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,15 +25,9 @@ public class DiaryController {
      * map将修改过后的User返回给目标方法
      */
     @ModelAttribute
-    public void getTime(@RequestParam(value = "user_id", required = false) String user_id,
-    					@RequestParam(value = "diary_date", required = false) String diary_date, Map<String, Object> map) {
-    	Map<String, String> map1 = new HashMap<>();
-    	System.out.println(user_id);
-    	System.out.println(diary_date);
-    	map1.put("user_id", user_id);
-    	map1.put("diary_date", diary_date);
+    public void getDiary(@RequestParam(value = "diary_id", required = false) String diary_id, Map<String, Object> map) {
     	//查询数据库原始记录
-    	Diary diary= diaryService.findOnlyDiaryById(map1);
+    	Diary diary= diaryService.findDiaryByDiaryId(diary_id);
     	System.out.println("从数据库中取出一个对象：" + diary);
     	/* 
     	 * 判断条件针对数据库插入数据而设
@@ -42,7 +37,7 @@ public class DiaryController {
     		System.out.println("没有对象");
     	}
     	else {
-    		map.put("plan", diary);
+    		map.put("diary", diary);
     	}
     }
 
@@ -50,31 +45,27 @@ public class DiaryController {
     *根据id查询用户的日记记录
     *测试用例：http://localhost:8080/tool/findDiaryById?id=abcddsssagafafa
     * */ 
-    @RequestMapping("/findDiaryById")
-    public String findDiaryById(String id, Model model) {
-    	Diary diary = diaryService.findDiaryById(id);
+    @RequestMapping("/findDiaryByUserId")
+    public String findDiaryByUserId(String user_id, Model model) {
+    	Diary diary = diaryService.findDiaryByUserId(user_id);
         model.addAttribute("diary", diary);
     	return "diary";
     }
     
     /*
      * 插入一条某用户日记记录
-     * http://localhost:8080/tool/insertDiary?user_id=abcabc&diary_content=今天我要学完高数第一章&diary_date=2019-04-11
+     * http://localhost:8080/tool/insertDiary?user_id=abcabc&diary_title=第二篇&diary_content=今天复习政治&diary_write_time=2019-6-30%206:31:06&diary_write_place=综合楼
      */
     @RequestMapping("/insertDiary")
-    public String insertDiary(String user_id, String diary_content, String diary_date, Model model) throws ParseException {
-    	try {
-			// 将前端传过来的字符串进行转码，因为http请求默认编码为ISO-8859-1，若不转码，该参数会乱码
-			user_id = new String(user_id.getBytes("ISO-8859-1"), "UTF-8");
-			diary_content = new String(diary_content.getBytes("ISO-8859-1"), "UTF-8");
-			diary_date = new String(diary_date.getBytes("ISO-8859-1"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
-		java.sql.Date date = java.sql.Date.valueOf(diary_date);
-		Diary diary = new Diary(user_id, diary_content, date);
+    public String insertDiary(String user_id, String diary_title, String diary_content,
+    						  String diary_write_time, String diary_write_place, Model model) throws ParseException {  
+    	System.out.println("userid:" + user_id);
+    	System.out.println(diary_content);
+    	System.out.println(diary_write_time);
+    	System.out.println(diary_write_place);
+    	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	Date diaryWriteTime = format.parse(diary_write_time);
+		Diary diary = new Diary(user_id, diary_title, diary_content, diaryWriteTime, diary_write_place);
 		diaryService.insertDiary(diary);
     	return "success";
     }
@@ -82,7 +73,7 @@ public class DiaryController {
     /*
           * 目标方法获取根据表单修改过后的Diary -> @ModelAttribute
      * 更新数据库某个用户记录
-     * http://localhost:8080/tool/updateDiary?user_id=abc&diary_content=XXXWxxWWX&diary_date=2019-04-11
+     * http://localhost:8080/tool/updateDiary?diary_id=2&diary_title=第二篇&diary_content=今天复习政治
      */
     @RequestMapping("/updateDiary")
     public String updateDiary(Diary diary) {
@@ -93,15 +84,11 @@ public class DiaryController {
     
     /*
      * 删除某用户一条日记记录
-     * http://localhost:8080/tool/deleteDiary?user_id=abcabc&diary_date=2019-04-11
+     * http://localhost:8080/tool/deleteDiary?diary_id=6
      */
     @RequestMapping("/deleteDiary")
-    public String deleteDiary(@RequestParam(value = "user_id") String user_id,
-    						 @RequestParam(value = "diary_date") String diary_date) {
-    	Map<String, String> map = new HashMap<>();
-    	map.put("user_id", user_id);
-    	map.put("diary_date", diary_date);
-    	diaryService.deleteDiary(map);
+    public String deleteDiary(@RequestParam(value = "diary_id") String diary_id) {
+    	diaryService.deleteDiary(diary_id);
     	return "success";
     }
 }

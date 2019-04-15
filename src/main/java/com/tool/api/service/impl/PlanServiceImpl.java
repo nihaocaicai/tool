@@ -1,7 +1,5 @@
 package com.tool.api.service.impl;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,9 +21,9 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	@Override
-	public Plan findOnlyPlanById(Map<String, String> map) {
+	public Plan findPlanByPlanId(String plan_id) {
 		// TODO Auto-generated method stub
-		return this.planDao.findOnlyPlanById(map);
+		return this.planDao.findPlanByPlanId(plan_id);
 	}
 
 	@Override
@@ -41,9 +39,9 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	@Override
-	public void deletePlan(Map<String, String> map) {
+	public void deletePlan(String plan_id) {
 		// TODO Auto-generated method stub
-		this.planDao.deletePlan(map);
+		this.planDao.deletePlan(plan_id);
 	}
 
 }

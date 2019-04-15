@@ -1,8 +1,6 @@
 package com.tool.api.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,23 +53,16 @@ public class UserController {
     
     /*
      * 数据库插入一个新的用户记录
-     * 测试例子http://localhost:8080/tool/insertUser?user_id=abcabc&user_name=waston&
-  * user_avatar=bbbbbb&user_gender=2&user_city=湛江&user_target=tshinghua&user_motto=心有所向，无惧悲伤
+     * 测试例子http://localhost:8080/tool/insertUser?user_id=DDD&user_name=orange&user_avatar=bbbbbb&user_gender=2&user_city=徐闻
+     * user_birthday=2015-07-15&user_target=tshinghua&user_motto=心有所向&user_exam_date=2019-05-31
      */
     @RequestMapping("/insertUser")
-    public String insertUser(String user_id, String user_name, String user_avatar, String user_gender, String user_city, String user_target, String user_motto) {
-    	try {
-			// 将前端传过来的字符串进行转码，因为http请求默认编码为ISO-8859-1，若不转码，该参数会乱码
-			user_name = new String(user_name.getBytes("ISO-8859-1"), "UTF-8");
-			user_avatar = new String(user_avatar.getBytes("ISO-8859-1"), "UTF-8");
-			user_city = new String(user_city.getBytes("ISO-8859-1"), "UTF-8");
-			user_target = new String(user_target.getBytes("ISO-8859-1"), "UTF-8");
-			user_motto = new String(user_motto.getBytes("ISO-8859-1"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	User user = new User(user_id, user_name, user_avatar, Integer.valueOf(user_gender), user_city, user_target, user_motto);
+    public String insertUser(String user_id, String user_name, String user_avatar, String user_gender, String user_city, 
+    						 String user_birthday, String user_target, String user_motto, String user_exam_date) {
+    	java.sql.Date userBirthday = java.sql.Date.valueOf(user_birthday);
+    	java.sql.Date userExamDay = java.sql.Date.valueOf(user_exam_date);
+    	System.out.println("userExamDay:" + userExamDay);
+    	User user = new User(user_id, user_name, user_avatar, Integer.valueOf(user_gender), user_city, userBirthday, user_target, user_motto, userExamDay);
     	userService.insertUser(user);
     	return "success";
     }
@@ -92,11 +83,11 @@ public class UserController {
     
     /*
      * 删除数据库中某个用户记录
-     * 测试例子：http://localhost:8080/tool/deleteUser?id=abcabc
+     * 测试例子：http://localhost:8080/tool/deleteUser?user_id=CCC
      */
     @RequestMapping("/deleteUser")
-    public String delete(@RequestParam(value = "id") String id) {
-    	userService.deleteUser(id);
+    public String delete(@RequestParam(value = "user_id") String user_id) {
+    	userService.deleteUser(user_id);
     	return "success";
     }
 }

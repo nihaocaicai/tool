@@ -22,5 +22,5 @@ public interface UserDao {
     /*
      * 删除用户信息
      */
-    public void deleteUser(String id);
+    public void deleteUser(String user_id);
 }

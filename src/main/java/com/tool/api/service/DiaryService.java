@@ -1,17 +1,16 @@
 package com.tool.api.service;
 
-import java.util.Map;
 import com.tool.api.entity.Diary;
 
 public interface DiaryService {
 	
-	public Diary findOnlyDiaryById(Map<String, String> map);
+	public Diary findDiaryByDiaryId(String diary_id);
 	
-	public Diary findDiaryById(String id);
+	public Diary findDiaryByUserId(String user_id);
 	
     public void insertDiary(Diary diary);
     
     public void updateDiary(Diary diary);
     
-    public void deleteDiary(Map<String, String> map);
+    public void deleteDiary(String diary_id);
 }

@@ -1,26 +1,46 @@
 package com.tool.api.entity;
 
+import java.sql.Date;
+
 public class User {
     private String user_id;
     private String user_name;
     private String user_avatar;
     private Integer user_gender;
     private String user_city;
+    private Date user_birthday;
     private String user_target;
     private String user_motto;
+    private Date user_exam_date;
     
-    
-
-    public User(String user_id, String user_name, String user_avatar, Integer user_gender, String user_city,
-			String user_target, String user_motto) {
+	public User(String user_id, String user_name, String user_avatar, Integer user_gender, String user_city,
+			Date userBirthday, String user_target, String user_motto, Date userExamDay) {
 		super();
 		this.user_id = user_id;
 		this.user_name = user_name;
 		this.user_avatar = user_avatar;
 		this.user_gender = user_gender;
 		this.user_city = user_city;
+		this.user_birthday = userBirthday;
 		this.user_target = user_target;
 		this.user_motto = user_motto;
+		this.user_exam_date = userExamDay;
+	}
+
+	public Date getUser_birthday() {
+		return user_birthday;
+	}
+
+	public void setUser_birthday(Date user_birthday) {
+		this.user_birthday = user_birthday;
+	}
+
+	public Date getUser_exam_date() {
+		return user_exam_date;
+	}
+
+	public void setUser_exam_date(Date user_exam_date) {
+		this.user_exam_date = user_exam_date;
 	}
 
 	public String getUser_id() {
@@ -79,16 +99,11 @@ public class User {
         this.user_motto = user_motto;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id='" + user_id + '\'' +
-                ", user_name='" + user_name + '\'' +
-                ", user_avatar='" + user_avatar + '\'' +
-                ", user_gender=" + user_gender +
-                ", user_city='" + user_city + '\'' +
-                ", user_target='" + user_target + '\'' +
-                ", user_motto='" + user_motto + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", user_name=" + user_name + ", user_avatar=" + user_avatar
+				+ ", user_gender=" + user_gender + ", user_city=" + user_city + ", user_birthday=" + user_birthday
+				+ ", user_target=" + user_target + ", user_motto=" + user_motto + ", user_exam_date=" + user_exam_date
+				+ "]";
+	}
 }

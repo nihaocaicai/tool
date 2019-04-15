@@ -22,11 +22,10 @@
         <!--<log4j.version>2.7</log4j.version>-->
         <!--<commons-logging.version>1.2</commons-logging.version>-->
         <!-- 对象转 jackson 版本号 -->
-<<<<<<< HEAD
         <jackson.version>2.7.0</jackson.version>
-=======
+<!--
         <jackson.version>2.9.8</jackson.version>
->>>>>>> 2d873983f34ce2308b09c87107a53dfc749293cd
+  -->
         <!--spring security version-->
         <spring.security.version>4.2.3.RELEASE</spring.security.version>
     </properties>

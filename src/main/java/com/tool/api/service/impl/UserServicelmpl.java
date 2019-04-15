@@ -18,4 +18,19 @@ public class UserServicelmpl implements UserService{
     public User findUserById(String id){
         return this.userDao.findUserById(id);
     }
+	@Override
+	public void insertUser(User user) {
+		// TODO Auto-generated method stub
+		this.userDao.insertUser(user);
+	}
+	@Override
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		this.userDao.updateUser(user);
+	}
+	@Override
+	public void deleteUser(String user_id) {
+		// TODO Auto-generated method stub
+		this.userDao.deleteUser(user_id);
+	}
 }

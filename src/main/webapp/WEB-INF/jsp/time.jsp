@@ -6,16 +6,22 @@
 <body>
 <table>
     <tr>
-        <td>time_id</td>
+        <td>arrange_id</td>
         <td>user_id</td>
-        <td>time_content</td>
-        <td>time_date</td>
+        <td>arrange_content</td>
+        <td>arrange_place</td>
+        <td>arrange_time</td>
+        <td>arrange_if_prompt</td>
+        <td>arrange_if_prompt_time</td>
     </tr>
     <tr>
-        <td>${time.time_id}</td>
-        <td>${time.user_id}</td>
-        <td>${time.time_content}</td>
-        <td>${time.time_date}</td>
+        <td>${arrangement.arrange_id}</td>
+        <td>${arrangement.user_id}</td>
+        <td>${arrangement.arrange_content}</td>
+        <td>${arrangement.arrange_place}</td>
+        <td>${arrangement.arrange_time}</td>
+        <td>${arrangement.arrange_if_prompt}</td>
+        <td>${arrangement.arrange_if_prompt_time}</td>
     </tr>
 </table>
 </body>
