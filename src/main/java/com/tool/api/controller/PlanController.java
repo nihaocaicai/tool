@@ -3,15 +3,20 @@ package com.tool.api.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.alibaba.fastjson.JSON;
 import com.tool.api.entity.Plan;
 import com.tool.api.service.PlanService;
+import com.tool.mapperClass.FindPlanByIdAndDate;
 
 @Controller
 public class PlanController {
@@ -24,7 +29,7 @@ public class PlanController {
      * map将修改过后的User返回给目标方法
      */
     @ModelAttribute
-    public void getTime(@RequestParam(value = "plan_id", required = false) String plan_id, Map<String, Object> map) {
+    public void getPlan(@RequestParam(value = "plan_id", required = false) String plan_id, Map<String, Object> map) {
     	System.out.println(plan_id);
     	//查询数据库原始记录
     	Plan plan = planService.findPlanByPlanId(plan_id);
@@ -42,13 +47,17 @@ public class PlanController {
     }
 
     /*
-    *根据id查询用户计划安排
-    *测试例子：http://localhost:8080/tool/findPlanById?user_id=abcddsssagafafa
+    *根据user_id还有时间date查询用户计划安排
+    *测试例子：http://localhost:8080/tool/findPlanByIdAndDate?user_id=abcddsssagafafa&date=2019-04-14
+    *@Param FindPlanByIdAndDate 临时存储pojo 位置com.tool.mapperClass
     * */ 
-    @RequestMapping("/findPlanById")
-    public String findPlanById(String user_id, Model model) {
-    	Plan plan = planService.findPlanById(user_id);
-        model.addAttribute("plan", plan);
+    @RequestMapping("/findPlanByIdAndDate")
+    public String findPlanByIdAndDate(String user_id, String date, ModelMap model) {
+    	List<FindPlanByIdAndDate> plan = planService.findPlanByIdAndDate(user_id, date);
+    	//转换成JSON格式
+    	String json = "data:";
+    	json += JSON.toJSONString(plan);
+    	model.put("data", json);
     	return "plan";
     }
     

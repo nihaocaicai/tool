@@ -1,4 +1,9 @@
 package com.tool.api.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.tool.api.entity.Plan;
 
 public interface PlanDao {
@@ -9,9 +14,9 @@ public interface PlanDao {
 	public Plan findPlanByPlanId(String plan_id);
 	
    /*
-    * 根据id查询用户全部计划安排信息
+    * 根据id和时间date查询用户当天计划安排信息
     */
-    public Plan findPlanById(String id);
+    public List<Plan> findPlanByIdAndDate(@Param(value = "user_id")String id, @Param(value = "date")String date);
     
     /*
      * 新增某用户的计划安排

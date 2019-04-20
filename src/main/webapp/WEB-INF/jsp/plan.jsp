@@ -1,30 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<html>
-<head>
-    <title>plan</title>
-</head>
-<body>
-<table>
-    <tr>
-        <td>plan_id</td>
-        <td>user_id</td>
-        <td>plan_content</td>
-        <td>plan_start_time</td>
-        <td>plan_end_time</td>
-        <td>plan_if_repeat</td>
-        <td>plan_if_prompt</td>
-        <td>plan_if_prompt_time</td>
-    </tr>
-    <tr>
-        <td>${plan.plan_id}</td>
-        <td>${plan.plan_id}</td>
-        <td>${plan.plan_content}</td>
-        <td>${plan.plan_start_time}</td>
-        <td>${plan.plan_end_time}</td>
-        <td>${plan.plan_if_repeat}</td>
-        <td>${plan.plan_if_prompt}</td>
-        <td>${plan.plan_if_prompt_time}</td>
-    </tr>
-</table>
-</body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" language="java"
+	pageEncoding="utf-8"%>
+${requestScope.data}

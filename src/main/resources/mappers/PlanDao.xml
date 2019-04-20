@@ -2,13 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tool.api.dao.PlanDao">
-	<!--根据id查询用户计划信息 -->
-	<select id="findPlanById" parameterType="String"
+
+	<!--根据id和时间date查询用户当天计划信息 -->
+	<select id="findPlanByIdAndDate" parameterType="java.util.HashMap"
 		resultType="com.tool.api.entity.Plan">
-		select * from Plan where user_id=#{user_id}
+		select * from Plan where user_id=#{user_id} and plan_start_time like '%${date}%'
 	</select>
 	
-	<!-- 根据时间和id来确定某用户某个时间段的计划 -->
+	<!-- 根据plan_id来确定某用户某个时间段的计划 -->
 	 <select id = "findPlanByPlanId" parameterType = "java.util.HashMap" resultType = "com.tool.api.entity.Plan">
     	select * from Plan where plan_id = #{plan_id}
     </select>

@@ -5,17 +5,6 @@
                       http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	version="3.1" metadata-complete="false">
 
-	<!-- spring监听器 -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<!-- spring配置文件 -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/spring-*.xml</param-value>
-	</context-param>
-
 	<!-- 添加springmvc支持 -->
 	<servlet>
 		<servlet-name>springMVC</servlet-name>
