@@ -26,19 +26,19 @@
     	插入一个新的用户
     	public void insertUser(User user);
      -->
-    <insert id="insertUser" parameterType="com.tool.api.entity.User">
-    	insert into user(user_id, user_name, user_avatar, user_gender, user_city, user_birthday, user_target, user_motto, user_exam_date) 
-    	values (#{user_id}, #{user_name}, #{user_avatar}, #{user_gender}, #{user_city}, #{user_birthday}, #{user_target}, #{user_motto}, #{user_exam_date})
-    </insert>
+    <update id="insertUser" parameterType="com.tool.api.entity.User">
+    	update user 
+    		set user_birthday = #{user_birthday}, user_target = #{user_target}, user_motto = #{user_motto}, user_exam_date = #{user_exam_date} 
+    			where user_id = #{user_id}
+    </update>
     
     <!-- 
     	更新某个用户信息
     	public void updateUser(User user);
      -->
-     <update id="updateUser">
+     <update id="updateUser" parameterType="com.tool.api.entity.User">
      	update user 
-     		set user_name = #{user_name}, user_avatar = #{user_avatar}, user_gender = #{user_gender}, user_city = #{user_city}, 
-     		user_birthday = #{user_birthday}, user_target = #{user_target}, user_motto = #{user_motto}, user_exam_date = #{user_exam_date} 
+     		set user_birthday = #{user_birthday}, user_target = #{user_target}, user_motto = #{user_motto}, user_exam_date = #{user_exam_date} 
      			where user_id = #{user_id}
      </update>
      

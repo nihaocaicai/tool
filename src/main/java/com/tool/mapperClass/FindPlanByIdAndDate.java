@@ -83,10 +83,10 @@ public class FindPlanByIdAndDate {
 
 	@Override
 	public String toString() {
-		return "{plan_id:" + plan_id + ", plan_content:" + plan_content + ", plan_start_time:"
-				+ plan_start_time + ", plan_end_time:" + plan_end_time + ", plan_if_repeat:" + plan_if_repeat
-				+ ", plan_if_prompt:" + plan_if_prompt + ", plan_if_prompt_time:" + plan_if_prompt_time
-				+ ", plan_if_finish:" + plan_if_finish + ",right:" + right + "}";
+		return "{\"plan_id\":" + plan_id + ", \"plan_content\":\"" + plan_content + "\", \"plan_start_time\":\""
+				+ plan_start_time + "\", \"plan_end_time\":\"" + plan_end_time + "\", \"plan_if_repeat\":" + plan_if_repeat
+				+ "\", \"plan_if_prompt\":\"" + plan_if_prompt + "\", \"plan_if_prompt_time\":\"" + plan_if_prompt_time
+				+ "\", \"plan_if_finish\":\"" + plan_if_finish + "\",right\":\"" + right + "\"}";
 	}
 	
 	

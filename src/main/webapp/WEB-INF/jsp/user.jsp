@@ -1,28 +1,2 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
-<html>
-<head>
-    <title>user</title>
-</head>
-<body>
-<table>
-    <tr>
-        <td>user_id</td>
-        <td>user_name</td>
-        <td>user_avatar</td>
-        <td>user_gender</td>
-        <td>user_city</td>
-        <td>user_target</td>
-        <td>user_motto</td>
-    </tr>
-    <tr>
-        <td>${user.user_id}</td>
-        <td>${user.user_name}</td>
-        <td>${user.user_avatar}</td>
-        <td>${user.user_gender}</td>
-        <td>${user.user_city}</td>
-        <td>${user.user_target}</td>
-        <td>${user.user_motto}</td>
-    </tr>
-</table>
-</body>
-</html>
+${requestScope.message}

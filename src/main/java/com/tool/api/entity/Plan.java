@@ -89,7 +89,16 @@ public class Plan {
 	public void setPlan_if_finish(int plan_if_finish) {
 		this.plan_if_finish = plan_if_finish;
 	}
+
+	@Override
+	public String toString() {
+		return "Plan [plan_id=" + plan_id + ", user_id=" + user_id + ", plan_content=" + plan_content
+				+ ", plan_start_time=" + plan_start_time + ", plan_end_time=" + plan_end_time + ", plan_if_repeat="
+				+ plan_if_repeat + ", plan_if_prompt=" + plan_if_prompt + ", plan_if_prompt_time=" + plan_if_prompt_time
+				+ ", plan_if_finish=" + plan_if_finish + "]";
+	}
 	
 	
 	//重写toString方法...
+	
 }

@@ -4,9 +4,21 @@
 <mapper namespace="com.tool.api.dao.PlanDao">
 
 	<!--根据id和时间date查询用户当天计划信息 -->
-	<select id="findPlanByIdAndDate" parameterType="java.util.HashMap"
+	<select id="findPlanAllIntraday" parameterType="java.util.HashMap"
 		resultType="com.tool.api.entity.Plan">
 		select * from Plan where user_id=#{user_id} and plan_start_time like '%${date}%'
+	</select>
+	
+	<!-- 根据id和时间date来查询该日期前所有计划信息 -->
+	<select id="findPlanAllBefore" parameterType="java.util.List"
+		resultType="com.tool.api.entity.Plan">
+		select * from Plan where user_id=#{user_id} and plan_start_time &lt; #{date} order by plan_start_time asc
+	</select>
+	
+	<!-- 根据id和时间date来查询该日期后所有计划信息 -->
+	<select id="findPlanAllAfter" parameterType="java.util.List"
+		resultType="com.tool.api.entity.Plan">
+		select * from Plan where user_id=#{user_id} and plan_start_time &gt; #{date} order by plan_start_time asc
 	</select>
 	
 	<!-- 根据plan_id来确定某用户某个时间段的计划 -->

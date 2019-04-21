@@ -12,11 +12,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.tool.api.entity.Plan;
 import com.tool.api.service.PlanService;
+import com.tool.mapperClass.FindPlanAllAfter;
 import com.tool.mapperClass.FindPlanByIdAndDate;
 
 @Controller
@@ -48,17 +48,46 @@ public class PlanController {
     }
 
     /*
-    *根据user_id还有时间date查询用户计划安排
-    *测试例子：http://localhost:8080/tool/findPlanByIdAndDate?user_id=abcddsssagafafa&date=2019-04-14
+    *获取用户当天考研计划
+    *测试例子：http://localhost:8080/tool/api.tool/v1/user/plans/all/intraday/findPlansAllIntraday?token=abcddsssagafafa&date=2019-04-14
     *@Param FindPlanByIdAndDate 临时存储pojo 位置com.tool.mapperClass
     * */ 
-    @RequestMapping("/findPlanByIdAndDate")
-    public String findPlanByIdAndDate(String user_id, String date, ModelMap model) {
-    	List<FindPlanByIdAndDate> plan = planService.findPlanByIdAndDate(user_id, date);
+    @RequestMapping("/api.tool/v1/user/plans/all/intraday")
+    public String findPlansAllIntraday(String token, String date, ModelMap map) {
+    	List<FindPlanByIdAndDate> plan = planService.findPlanAllIntraday(token, date);
     	//转换成JSON格式
     	String json = "data:";
     	json += JSON.toJSONString(plan);
-    	model.put("data", json);
+    	System.out.println(json);
+    	map.put("message", json);
+    	return "plan";
+    }
+    
+    /*
+    *获取用户全部考研计划（当天之前的）
+    *测试例子：http://localhost:8080/tool/api.tool/v1/user/plans/all/before?token=abcddsssagafafa&date=2019-04-19
+    *@Param FindPlanAllAfter 临时存储pojo 位置com.tool.mapperClass
+    * */ 
+    @RequestMapping("/api.tool/v1/user/plans/all/before")
+    public String findPlansAllbefore(String token, String date, ModelMap map) {
+    	List<FindPlanAllAfter> list = planService.findPlanAllBefore(token, date);
+    	String json = JSON.toJSONString(list);
+    	map.put("message", json);
+    	return "plan";
+    }
+    
+    /*
+     *获取用户全部考研计划（当天之后的）
+     *测试例子：http://localhost:8080/tool/api.tool/v1/user/plans/all/after?token=abc&date=2019-04-19
+     *@Param FindPlanAllAfter 临时存储pojo 位置com.tool.mapperClass
+     * */ 
+    @RequestMapping("/api.tool/v1/user/plans/all/after")
+    public String findPlansAllAfter(String token, String date, ModelMap map) {
+    	List<FindPlanAllAfter> list = planService.findPlanAllAfter(token, date);
+    	String json = "all_plan:";
+    	json += JSON.toJSONString(list);
+    	System.out.println(list);
+    	map.put("message", json);
     	return "plan";
     }
     

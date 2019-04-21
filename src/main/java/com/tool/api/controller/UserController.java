@@ -4,10 +4,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.alibaba.fastjson.JSON;
 import com.tool.api.entity.User;
 import com.tool.api.service.UserService;
 
@@ -22,9 +25,9 @@ public class UserController {
      * map将修改过后的User返回给目标方法
      */
     @ModelAttribute
-    public void getUser(@RequestParam(value = "user_id", required = false) String user_id, Map<String, Object> map) {
+    public void getUser(@RequestParam(value = "token", required = false) String token, Map<String, Object> map) {
     	//查询数据库原始记录
-    	User user = userService.findUserById(user_id);
+    	User user = userService.findUserById(token);
     	System.out.println("从数据库中取出一个对象：" + user);
     	/* 
     	 * 判断条件针对数据库插入数据而设
@@ -41,44 +44,42 @@ public class UserController {
     
     /*
       *根据id查询用户信息
-     * 测试例子：http://localhost:8080/tool/findUserById?user_id=abcddsssagafafa
+     * 测试例子：http://localhost:8080/tool/api.tool/v1/user/info/show?token=abcddsssagafafa
      */
-    @RequestMapping("/findUserById")
-    public String findUserById(String user_id, Model model){
-        User user = userService.findUserById(user_id);
-        model.addAttribute("user",user);
+    @RequestMapping(value = "/api.tool/v1/user/info/show", method = RequestMethod.GET)
+    public String findUserById(String token, ModelMap map){
+        User user = userService.findUserById(token);
+        String json = "";
+    	json += JSON.toJSONString(user);
+        map.put("message",json);
 //        返回用户信息展示页面
         return "user";
     }
     
     /*
      * 数据库插入一个新的用户记录
-     * 测试例子http://localhost:8080/tool/insertUser?user_id=DDD&user_name=orange&user_avatar=bbbbbb&user_gender=2&user_city=徐闻
-     * user_birthday=2015-07-15&user_target=tshinghua&user_motto=心有所向&user_exam_date=2019-05-31
+     * 测试例子:http://localhost:8080/tool/api.tool/v1/user/info/add?token=abc&user_target=XXXX&user_city=湛江
      */
-    @RequestMapping("/insertUser")
-    public String insertUser(String user_id, String user_name, String user_avatar, String user_gender, String user_city, 
-    						 String user_birthday, String user_target, String user_motto, String user_exam_date) {
-    	java.sql.Date userBirthday = java.sql.Date.valueOf(user_birthday);
-    	java.sql.Date userExamDay = java.sql.Date.valueOf(user_exam_date);
-    	System.out.println("userExamDay:" + userExamDay);
-    	User user = new User(user_id, user_name, user_avatar, Integer.valueOf(user_gender), user_city, userBirthday, user_target, user_motto, userExamDay);
+    @RequestMapping(value = "/api.tool/v1/user/info/add", method = RequestMethod.GET)
+    public String insertUser(User user, ModelMap map) {
     	userService.insertUser(user);
-    	return "success";
+    	String message = "{\"error_code\":0,\"msg\":\"ok\",\"request\":\"POST api.tool/v1/user/info/add\"";
+    	map.put("message", message);
+    	return "user";
     }
     
     /*
      * 目标方法获取根据表单修改过后的User -> @ModelAttribute
      * 更新数据库某个用户记录
-     * 测试例子：http://localhost:8080/tool/updateUser?user_id=abc&user_target=XXXX&user_city=湛江
+     * 测试例子：http://localhost:8080/tool/api.tool/v1/user/info/modify?token=abc&user_target=XXXX&user_city=湛江
      */
-    @RequestMapping("/updateUser")
-    public String updateUser(User user) {
-    	//这是根据表单提交的信息修改过后的user
-    	System.out.println("修改：" + user);
+    @RequestMapping(value = "/api.tool/v1/user/info/modify", method = RequestMethod.GET)
+    public String updateUser(User user, ModelMap map) {
     	//根据修改过后的user去更新数据库
     	userService.updateUser(user);
-    	return "success";
+    	String message = "{\"error_code\":0,\"msg\":\"ok\",\"request\":\"POST api.tool/v1/user/info/modify\"}";
+    	map.put("message", message);
+    	return "user";
     }
     
     /*

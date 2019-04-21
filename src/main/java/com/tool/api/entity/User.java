@@ -12,7 +12,16 @@ public class User {
     private String user_target;
     private String user_motto;
     private Date user_exam_date;
-    
+
+	public User(String user_id, Date user_birthday, String user_target, String user_motto, Date user_exam_date) {
+		super();
+		this.user_id = user_id;
+		this.user_birthday = user_birthday;
+		this.user_target = user_target;
+		this.user_motto = user_motto;
+		this.user_exam_date = user_exam_date;
+	}
+
 	public User(String user_id, String user_name, String user_avatar, Integer user_gender, String user_city,
 			Date userBirthday, String user_target, String user_motto, Date userExamDay) {
 		super();
@@ -101,9 +110,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [user_id=" + user_id + ", user_name=" + user_name + ", user_avatar=" + user_avatar
-				+ ", user_gender=" + user_gender + ", user_city=" + user_city + ", user_birthday=" + user_birthday
-				+ ", user_target=" + user_target + ", user_motto=" + user_motto + ", user_exam_date=" + user_exam_date
-				+ "]";
+		return "{user_id:" + user_id + ", user_name:" + user_name + ", user_avatar:" + user_avatar
+				+ ", user_gender:" + user_gender + ", user_city:" + user_city + ", user_birthday:" + user_birthday
+				+ ", user_target:" + user_target + ", user_motto:" + user_motto + ", user_exam_date:" + user_exam_date
+				+ "}";
 	}
 }

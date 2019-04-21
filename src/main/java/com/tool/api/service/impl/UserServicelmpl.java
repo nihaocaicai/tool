@@ -3,7 +3,6 @@ package com.tool.api.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.tool.api.dao.UserDao;
 import com.tool.api.entity.User;
 import com.tool.api.service.UserService;
@@ -16,7 +15,7 @@ public class UserServicelmpl implements UserService{
     private UserDao userDao;
 //    查询用户
     public User findUserById(String id){
-        return this.userDao.findUserById(id);
+    	return this.userDao.findUserById(id);
     }
 	@Override
 	public void insertUser(User user) {
