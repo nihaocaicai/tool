@@ -1,7 +1,11 @@
 package com.tool.api.controller;
 
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -9,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.tool.api.entity.User;
@@ -46,17 +51,19 @@ public class UserController {
       *根据id查询用户信息
      * 测试例子：http://localhost:8080/tool/api.tool/v1/user/info/show?token=abcddsssagafafa
      */
-    @RequestMapping(value = "/api.tool/v1/user/info/show", method = RequestMethod.GET)
-    public String findUserById(String token, ModelMap map){
+    @RequestMapping(value = "user/info/show", method = {RequestMethod.GET})
+    public String findUserById(HttpServletRequest httpRequest, ModelMap map){
+    	Map<String,?> Map = RequestContextUtils.getInputFlashMap(httpRequest); 
+    	String token = (String) Map.get("token");
         User user = userService.findUserById(token);
         String json = "";
     	json += JSON.toJSONString(user);
-        map.put("message",json);
-//        返回用户信息展示页面
+    	map.put("message", json);
         return "user";
     }
     
     /*
+     * 有问题
      * 数据库插入一个新的用户记录
      * 测试例子:http://localhost:8080/tool/api.tool/v1/user/info/add?token=abc&user_target=XXXX&user_city=湛江
      */
@@ -73,7 +80,7 @@ public class UserController {
      * 更新数据库某个用户记录
      * 测试例子：http://localhost:8080/tool/api.tool/v1/user/info/modify?token=abc&user_target=XXXX&user_city=湛江
      */
-    @RequestMapping(value = "/api.tool/v1/user/info/modify", method = RequestMethod.GET)
+    @RequestMapping(value = "/user/info/modify", method = RequestMethod.GET)
     public String updateUser(User user, ModelMap map) {
     	//根据修改过后的user去更新数据库
     	userService.updateUser(user);
@@ -86,9 +93,11 @@ public class UserController {
      * 删除数据库中某个用户记录
      * 测试例子：http://localhost:8080/tool/deleteUser?user_id=CCC
      */
-    @RequestMapping("/deleteUser")
-    public String delete(@RequestParam(value = "user_id") String user_id) {
-    	userService.deleteUser(user_id);
+    @RequestMapping("/user/info/delete")
+    public String delete(HttpServletRequest httpRequest) {
+    	Map<String,?> Map = RequestContextUtils.getInputFlashMap(httpRequest); 
+    	String token = (String) Map.get("token");
+    	userService.deleteUser(token);
     	return "success";
     }
 }
