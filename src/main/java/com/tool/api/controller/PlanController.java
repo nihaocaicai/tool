@@ -49,7 +49,7 @@ public class PlanController {
 
     /*
     *获取用户当天考研计划
-    *测试例子：http://localhost:8080/tool/api.tool/v1/user/plans/all/intraday/findPlansAllIntraday?token=abcddsssagafafa&date=2019-04-14
+    *测试例子：http://localhost:8080/tool/api.tool/v1/user/plans/all/intraday?token=abcddsssagafafa&date=2019-04-14
     *@Param FindPlanByIdAndDate 临时存储pojo 位置com.tool.mapperClass
     * */ 
     @RequestMapping("/api.tool/v1/user/plans/all/intraday")
