@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 
 
-
 @Service
 @Transactional
 public class UserTokenServicelmpl implements UserTokenService{
@@ -70,14 +69,17 @@ public class UserTokenServicelmpl implements UserTokenService{
         //    注解注入UserDao
         //查找数据库是否有openid
         int if_exit = this.userDao.findUserByIdIf(openid);
-        System.out.println(if_exit);
+//        System.out.println(if_exit);
         // 借助微信的openid作为用户标识
         // 但在系统中的相关查询还是使用自己的uid
         if (if_exit==0){
             //查询数据库没有，插入
             this.userDao.insertUser(new User(openid));
         }
+//        查询该user_id在数据库的UID
         int uid = this.userDao.findUserByUserId(openid);
+//        将UID装换为字符串
+        openid=""+uid;
 //        System.out.println(uid);
         //准备缓存的东西
         String cachedValue =this.prepareCachedValue(openid);
@@ -99,6 +101,8 @@ public class UserTokenServicelmpl implements UserTokenService{
         String value = openid;
         RedisUtil.getJedis().set(key,value);
         System.out.println(key+"+"+RedisUtil.getJedis().get(key));
+//        释放资源
+        RedisUtil.getJedis().close();
         return key;
     }
 }
