@@ -119,9 +119,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "{user_id:" + user_id + ", user_name:" + user_name + ", user_avatar:" + user_avatar
-				+ ", user_gender:" + user_gender + ", user_city:" + user_city + ", user_birthday:" + user_birthday
-				+ ", user_target:" + user_target + ", user_motto:" + user_motto + ", user_exam_date:" + user_exam_date
+		return "{"+ "user_birthday:" + user_birthday
+				+ ", user_target:" + user_target
+                + ", user_motto:" + user_motto
+                + ", user_exam_date:" + user_exam_date
 				+ "}";
 	}
 }

@@ -10,15 +10,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MainController {
-	
+
 	@RequestMapping(value = "/v1/user/info/show", method = {RequestMethod.GET})
 	public String userControllerFind(String token) {
 		String id = RedisUtil.getJedis().get(token);
-		System.out.println(id);
-		return "redirect:/user/info/show?id="+id;
+		if(id==null){
+			return null;
+		}else {
+			//		System.out.println(id);
+			return "redirect:/user/info/show?id="+id;
+		}
 	}
 	
-	@RequestMapping(value = "/api.tool/v1/user/info/modify", method = {RequestMethod.GET})
+	@RequestMapping(value = "/v1/user/info/modify", method = {RequestMethod.GET})
 	public String userControllerUpdate(HttpServletRequest httpServletRequest) {
 		String url = httpServletRequest.getQueryString();
 		System.out.println(url);

@@ -22,13 +22,11 @@
     <select id="findUserByUserId" parameterType="String" resultType="int">
         select id from user where user_id=#{user_id}
     </select>
-
     <!--
      	根据id查询用户信息
-    	public User findUserById(int id);
       -->
     <select id="findUserById" parameterType="int" resultType="user">
-        select * from user where id=#{id}
+        select user_birthday,user_target,user_motto,user_exam_date from user where id=#{id}
     </select>
 
 

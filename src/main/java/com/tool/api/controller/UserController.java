@@ -5,12 +5,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -47,9 +44,9 @@ public class UserController {
     
     /*
       *根据id查询用户信息
-     * 测试例子：http://localhost:8080/tool/api.tool/v1/user/info/show?token=abcddsssagafafa
+     * 测试例子：http://localhost:8080/tool/v1/user/info/show?token=abcddsssagafafa
      */
-    @RequestMapping(value = "user/info/show", method = {RequestMethod.GET}, produces="text/html;charset=UTF-8")
+    @RequestMapping(value = "/user/info/show", method = {RequestMethod.GET}, produces="text/html;charset=UTF-8")
 	@ResponseBody
     public String findUserById(String id){
 		int uid = Integer.parseInt(id);
