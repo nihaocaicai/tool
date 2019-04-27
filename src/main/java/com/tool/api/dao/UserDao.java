@@ -4,6 +4,11 @@ import com.tool.api.entity.User;
 * User接口文件
 * */
 public interface UserDao {
+//    根据user_id查询用户是否存在
+    public int findUserByIdIf(String id);
+
+//    根据user_id查询UID
+    public int findUserByUserId(String id);
     /*
     * 根据id查询用户信息
     * */

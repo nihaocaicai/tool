@@ -13,6 +13,11 @@ public class User {
     private String user_motto;
     private Date user_exam_date;
 
+    public User(String user_id) {
+        super();
+        this.user_id = user_id;
+    }
+
 	public User(String user_id, Date user_birthday, String user_target, String user_motto, Date user_exam_date) {
 		super();
 		this.user_id = user_id;

@@ -5,6 +5,7 @@ import com.tool.api.entity.User;
 import com.tool.api.service.UserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,13 +26,14 @@ public class TokenController {
      */
     @RequestMapping(value = "/token", method = RequestMethod.POST)
     @ResponseBody
-    public String getToken(String code) throws Exception {
-        if(code.isEmpty()){
+    public String getToken(@RequestBody String code) throws Exception {
+        if(JSON.parseObject(code).isEmpty()){
             return JSON.toJSONString("code不能为空");
         }
-        String token = userTokenService.getToken(code);
-
+        String token = userTokenService.getToken(JSON.parseObject(code).getString("code"));
         return JSON.toJSONString(token);
+//        System.out.println(JSON.parseObject(code).getString("code"));
+//        return "token";
     }
 
 }
