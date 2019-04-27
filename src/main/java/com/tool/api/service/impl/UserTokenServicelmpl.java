@@ -55,18 +55,16 @@ public class UserTokenServicelmpl implements UserTokenService{
         else{
             return this.grantToken(openid);
         }
-
     }
 
     /*颁发令牌
      只要调用登陆就颁发新令牌
      但旧的令牌依然可以使用
      所以通常令牌的有效时间比较短
-     下面还没有设置有效时间*/
+     */
     @Autowired
     private UserDao userDao;
     private String grantToken(String openid){
-        //    注解注入UserDao
         //查找数据库是否有openid
         int if_exit = this.userDao.findUserByIdIf(openid);
 //        System.out.println(if_exit);
@@ -76,7 +74,7 @@ public class UserTokenServicelmpl implements UserTokenService{
             //查询数据库没有，插入
             this.userDao.insertUser(new User(openid));
         }
-//        查询该user_id在数据库的UID
+//      查询该user_id在数据库的UID
         int uid = this.userDao.findUserByUserId(openid);
 //        将UID装换为字符串
         openid=""+uid;
@@ -99,8 +97,20 @@ public class UserTokenServicelmpl implements UserTokenService{
     private String saveToCache(String openid){
         String key = generateToken();
         String value = openid;
-        RedisUtil.getJedis().set(key,value);
-        System.out.println(key+"+"+RedisUtil.getJedis().get(key));
+        /**
+         * 存储数据到缓存中，并制定过期时间和当Key存在时是否覆盖。
+         * @param key
+         * @param value
+         * @param nxxx  nxxx的值只能取NX或者XX，如果取NX，则只有当key不存在是才进行set，如果取XX，
+         *              则只有当key已经存在时才进行set
+         * @param expx
+         *            expx的值只能取EX或者PX，代表数据过期时间的单位，EX代表秒，PX代表毫秒。
+         * @param time
+         *            过期时间，单位是expx所代表的单位。
+         * @return
+         */
+        RedisUtil.getJedis().set(key,value,"NX","EX",3600*24*6);
+//        System.out.println(key+"+"+RedisUtil.getJedis().get(key));
 //        释放资源
         RedisUtil.getJedis().close();
         return key;

@@ -1,6 +1,8 @@
 package com.tool.api.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.tool.api.utils.RedisUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,18 +11,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class MainController {
 	
-	@RequestMapping(value = "/api.tool/v1/user/info/show", method = {RequestMethod.GET})
-	public String userControllerFind(String token, RedirectAttributes attr) {
-		attr.addFlashAttribute("token", token);
-		System.out.println(token);
-		return "redirect:/user/info/show";
+	@RequestMapping(value = "/v1/user/info/show", method = {RequestMethod.GET})
+	public String userControllerFind(String token) {
+		String id = RedisUtil.getJedis().get(token);
+		System.out.println(id);
+		return "redirect:/user/info/show?id="+id;
 	}
-	
-//	@RequestMapping(value = "/api.tool/v1/user/info/add", method = {RequestMethod.GET})
-//	public String userControllerInsert(User user, RedirectAttributes attr) {
-//		attr.addFlashAttribute("user", attributeValue)
-//		return "redirect:/user/info/add";
-//	}
 	
 	@RequestMapping(value = "/api.tool/v1/user/info/modify", method = {RequestMethod.GET})
 	public String userControllerUpdate(HttpServletRequest httpServletRequest) {

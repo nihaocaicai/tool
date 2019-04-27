@@ -9,10 +9,8 @@ import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -24,42 +22,40 @@ public class UserController {
     @Autowired
     private UserService userService;
     
-    /*
-     * 每次调用目标方法之前都会执行它
-     * 先从数据库获取原始数据，再将新的参数直接替代原来的参数，若没有原始参数对应的新参数，则不作修改
-     * map将修改过后的User返回给目标方法
-     */
-    @ModelAttribute
-    public void getUser(@RequestParam(value = "token", required = false) String token, Map<String, Object> map) {
-    	//查询数据库原始记录
-    	User user = userService.findUserById(token);
-    	System.out.println("从数据库中取出一个对象：" + user);
-    	/* 
-    	 * 判断条件针对数据库插入数据而设
-    	 * 由于数据库开始肯定不存在这个user_id，所以返回必定为空，若强行put进去，则调用插入方法时候会NullPointException
-    	 */
-    	if(user == null) {
-    		
-    	}
-    	else {
-    		System.out.println("进行修改");
-    		map.put("user", user);
-    	}
-    }
+//    /*
+//     * 每次调用目标方法之前都会执行它
+//     * 先从数据库获取原始数据，再将新的参数直接替代原来的参数，若没有原始参数对应的新参数，则不作修改
+//     * map将修改过后的User返回给目标方法
+//     */
+//    @ModelAttribute
+//    public void getUser(@RequestParam(value = "id", required = false) int id, Map<String, Object> map) {
+//    	//查询数据库原始记录
+//    	User user = userService.findUserById(id);
+//    	System.out.println("从数据库中取出一个对象：" + user);
+//    	/*
+//    	 * 判断条件针对数据库插入数据而设
+//    	 * 由于数据库开始肯定不存在这个user_id，所以返回必定为空，若强行put进去，则调用插入方法时候会NullPointException
+//    	 */
+//    	if(user == null) {
+//
+//    	}
+//    	else {
+//    		System.out.println("进行修改");
+//    		map.put("user", user);
+//    	}
+//    }
     
     /*
       *根据id查询用户信息
      * 测试例子：http://localhost:8080/tool/api.tool/v1/user/info/show?token=abcddsssagafafa
      */
-    @RequestMapping(value = "user/info/show", method = {RequestMethod.GET})
-    public String findUserById(HttpServletRequest httpRequest, ModelMap map){
-    	Map<String,?> Map = RequestContextUtils.getInputFlashMap(httpRequest); 
-    	String token = (String) Map.get("token");
-        User user = userService.findUserById(token);
-        String json = "";
-    	json += JSON.toJSONString(user);
-    	map.put("message", json);
-        return "user";
+    @RequestMapping(value = "user/info/show", method = {RequestMethod.GET}, produces="text/html;charset=UTF-8")
+	@ResponseBody
+    public String findUserById(String id){
+		int uid = Integer.parseInt(id);
+//		System.out.println(uid);
+        User user = userService.findUserById(uid);
+        return JSON.toJSONString(user);
     }
     
     /*

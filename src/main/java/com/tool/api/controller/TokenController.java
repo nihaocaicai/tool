@@ -31,6 +31,7 @@ public class TokenController {
             return JSON.toJSONString("code不能为空");
         }
         String token = userTokenService.getToken(JSON.parseObject(code).getString("code"));
+        token="{"+"\""+"token"+"\""+":"+"\""+token+"\""+"}";
         return JSON.toJSONString(token);
 //        System.out.println(JSON.parseObject(code).getString("code"));
 //        return "token";

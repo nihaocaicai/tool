@@ -13,9 +13,7 @@ public class UserDaoTest extends BaseTest {
 
     @Test
     public void testQueryById() throws Exception {
-        String userId = "abcddsssagafafa";
-        User user = userDao.findUserById(userId);
-        System.out.println(user);
+
     }
 
 }

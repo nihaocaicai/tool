@@ -13,22 +13,24 @@
         <result property="user_motto" column="user_motto"/>
     </resultMap>
 
-    <!--
-     	根据id查询用户信息
-    	public User findUserById(String id);
-      -->
-    <select id="findUserById" parameterType="String" resultType="user">
-        select * from user where user_id=#{id}
-    </select>
-
     <!--查询用户是否存在-->
     <select id="findUserByIdIf" parameterType="String" resultType="int">
-        select count(*) from user where user_id=#{id}
+        select count(*) from user where user_id=#{user_id}
     </select>
+
     <!--根据user_id查询数据库相应UID-->
     <select id="findUserByUserId" parameterType="String" resultType="int">
-        select id from user where user_id=#{id}
+        select id from user where user_id=#{user_id}
     </select>
+
+    <!--
+     	根据id查询用户信息
+    	public User findUserById(int id);
+      -->
+    <select id="findUserById" parameterType="int" resultType="user">
+        select * from user where id=#{id}
+    </select>
+
 
     <!-- 
     	插入一个新的用户

@@ -5,14 +5,14 @@ import com.tool.api.entity.User;
 * */
 public interface UserDao {
 //    根据user_id查询用户是否存在
-    public int findUserByIdIf(String id);
+    public int findUserByIdIf(String user_id);
 
 //    根据user_id查询UID
-    public int findUserByUserId(String id);
+    public int findUserByUserId(String user_id);
     /*
     * 根据id查询用户信息
     * */
-    public User findUserById(String id);
+    public User findUserById(int id);
     
     /*
      * 新增加一条用户记录

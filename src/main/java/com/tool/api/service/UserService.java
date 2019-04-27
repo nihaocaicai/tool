@@ -2,7 +2,7 @@ package com.tool.api.service;
 import com.tool.api.entity.User;
 
 public interface UserService {
-    public User findUserById(String id);
+    public User findUserById(int id);
     
     public void insertUser(User user);
     

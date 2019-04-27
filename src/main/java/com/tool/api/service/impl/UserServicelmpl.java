@@ -14,7 +14,7 @@ public class UserServicelmpl implements UserService{
     @Autowired
     private UserDao userDao;
 //    查询用户
-    public User findUserById(String id){
+    public User findUserById(int id){
     	return this.userDao.findUserById(id);
     }
 	@Override
