@@ -36,5 +36,4 @@ public class TokenController {
 //        System.out.println(JSON.parseObject(code).getString("code"));
 //        return "token";
     }
-
 }

@@ -32,4 +32,8 @@
 
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.tool.api.controller" />
+
+    <!--全局异常处理器,只要类实现了HandlerExceptionResolver接口，就是一个全局异常处理器哦-->
+    <bean class="com.tool.api.exception.BaseExceptionResolver"/>
+
 </beans>

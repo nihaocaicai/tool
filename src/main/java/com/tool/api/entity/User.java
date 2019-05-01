@@ -31,10 +31,9 @@ public class User {
 		this.user_exam_date = user_exam_date;
 	}
 
-	public User(String user_id, String user_name, String user_avatar, Integer user_gender, String user_city,
+	public User(String user_name, String user_avatar, Integer user_gender, String user_city,
 			Date userBirthday, String user_target, String user_motto, Date userExamDay) {
 		super();
-		this.user_id = user_id;
 		this.user_name = user_name;
 		this.user_avatar = user_avatar;
 		this.user_gender = user_gender;

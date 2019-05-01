@@ -1,12 +1,13 @@
 package com.tool.api.controller;
 
+import java.sql.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.tool.api.utils.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
@@ -56,30 +57,31 @@ public class UserController {
     }
     
     /*
-     * 有问题
-     * 数据库插入一个新的用户记录
-     * 测试例子:http://localhost:8080/tool/api.tool/v1/user/info/add?token=abc&user_target=XXXX&user_city=湛江
-     */
-    @RequestMapping(value = "/api.tool/v1/user/info/add", method = RequestMethod.GET)
-    public String insertUser(User user, ModelMap map) {
-    	userService.insertUser(user);
-    	String message = "{\"error_code\":0,\"msg\":\"ok\",\"request\":\"POST api.tool/v1/user/info/add\"";
-    	map.put("message", message);
-    	return "user";
-    }
-    
-    /*
-     * 目标方法获取根据表单修改过后的User -> @ModelAttribute
      * 更新数据库某个用户记录
-     * 测试例子：http://localhost:8080/tool/api.tool/v1/user/info/modify?token=abc&user_target=XXXX&user_city=湛江
+     * 测试例子：http://localhost:8080/tool/v1/user/info/modify
      */
-    @RequestMapping(value = "/user/info/modify", method = RequestMethod.GET)
-    public String updateUser(User user, ModelMap map) {
+    @RequestMapping(value = "/user/info/modify", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateUser(@RequestBody String user_info) {
+        if(JSON.parseObject(user_info).isEmpty()){
+            return JSON.toJSONString("user_info不能为空");
+        }
+        String token = JSON.parseObject(user_info).getString("token");
+        String user_name = JSON.parseObject(user_info).getString("user_name");
+        String user_avatar = JSON.parseObject(user_info).getString("user_avatar");
+        Integer user_gender = JSON.parseObject(user_info).getInteger("user_gender");
+        String user_city = JSON.parseObject(user_info).getString("user_city");
+        String user_brithday = JSON.parseObject(user_info).getString("user_brithday");
+        String user_target = JSON.parseObject(user_info).getString("user_target");
+        String user_motto = JSON.parseObject(user_info).getString("user_motto");
+        String user_exam_date = JSON.parseObject(user_info).getString("user_exam_date");
+        String id = RedisUtil.getJedis().get(token);
+        int uid = Integer.parseInt(id);
     	//根据修改过后的user去更新数据库
-    	userService.updateUser(user);
+    	userService.updateUser(uid,new User(user_name,user_avatar,user_gender,user_city,
+                Date.valueOf(user_brithday),user_target,user_motto,Date.valueOf(user_exam_date)));
     	String message = "{\"error_code\":0,\"msg\":\"ok\",\"request\":\"POST api.tool/v1/user/info/modify\"}";
-    	map.put("message", message);
-    	return "user";
+    	return JSON.toJSONString(message);
     }
     
     /*

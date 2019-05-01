@@ -4,7 +4,6 @@ package com.tool.api.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.tool.api.dao.UserDao;
 import com.tool.api.entity.User;
-import com.tool.api.exception.TokenException;
 import com.tool.api.service.UserTokenService;
 import com.tool.api.utils.HttpRequest;
 import com.tool.api.utils.RandomString;
@@ -24,11 +23,6 @@ public class UserTokenServicelmpl implements UserTokenService{
     {
         String randChar= RandomString.getRandomString(32);
         return DigestUtils.md5DigestAsHex(randChar.getBytes());
-    }
-
-    //验证token是否合法或者是否过期
-    public static void needPrimaryScope(){
-
     }
 //token end
 
