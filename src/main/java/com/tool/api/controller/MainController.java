@@ -12,7 +12,7 @@ public class MainController {
 	@ModelAttribute
 	public void verifyToken(@RequestParam String token)throws Exception{
 			if(RedisUtil.getJedis().get(token)==null){
-				throw new BaseException("{error_code:2001,msg:\"Token已过期或无效Token\",request:\"GET /v1/user/info/show\"}");
+				throw new BaseException("error_code:2001:msg:Token已过期或无效Token");
 			}
     }
 

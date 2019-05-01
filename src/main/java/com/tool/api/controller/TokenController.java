@@ -1,14 +1,14 @@
 package com.tool.api.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.tool.api.entity.User;
+import com.tool.api.exception.BaseException;
 import com.tool.api.service.UserTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+
 
 /*
 * 获取令牌，相当于登录
@@ -24,16 +24,15 @@ public class TokenController {
      * @note 虽然查询应该使用get，但为了稍微增强安全性，所以使用POST
      * http://localhost:8080/tool/token
      */
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
+    @RequestMapping(value = "/token", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
     @ResponseBody
     public String getToken(@RequestBody String code) throws Exception {
         if(JSON.parseObject(code).isEmpty()){
-            return JSON.toJSONString("code不能为空");
+            throw new BaseException("error_code:2000:msg:code不能为空");
         }
         String token = userTokenService.getToken(JSON.parseObject(code).getString("code"));
-        token="{"+"\""+"token"+"\""+":"+"\""+token+"\""+"}";
-        return JSON.toJSONString(token);
-//        System.out.println(JSON.parseObject(code).getString("code"));
-//        return "token";
+        HashMap<String,String> map = new HashMap<String,String>();
+        map.put("token",token);
+        return JSON.toJSONString(map);
     }
 }
