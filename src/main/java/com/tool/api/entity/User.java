@@ -3,6 +3,7 @@ package com.tool.api.entity;
 import java.sql.Date;
 
 public class User {
+    private int id;
     private String user_id;
     private String user_name;
     private String user_avatar;
@@ -43,6 +44,26 @@ public class User {
 		this.user_motto = user_motto;
 		this.user_exam_date = userExamDay;
 	}
+    public User(int id,String user_name, String user_avatar, Integer user_gender, String user_city,
+                Date userBirthday, String user_target, String user_motto, Date userExamDay) {
+        super();
+        this.id=id;
+        this.user_name = user_name;
+        this.user_avatar = user_avatar;
+        this.user_gender = user_gender;
+        this.user_city = user_city;
+        this.user_birthday = userBirthday;
+        this.user_target = user_target;
+        this.user_motto = user_motto;
+        this.user_exam_date = userExamDay;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 	public Date getUser_birthday() {
 		return user_birthday;
@@ -116,12 +137,4 @@ public class User {
         this.user_motto = user_motto;
     }
 
-	@Override
-	public String toString() {
-		return "{"+ "user_birthday:" + user_birthday
-				+ ", user_target:" + user_target
-                + ", user_motto:" + user_motto
-                + ", user_exam_date:" + user_exam_date
-				+ "}";
-	}
 }

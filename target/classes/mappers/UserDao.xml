@@ -4,7 +4,8 @@
 <mapper namespace="com.tool.api.dao.UserDao">
 
     <resultMap id="userMap" type="com.tool.api.entity.User">
-        <id property="user_id" column="user_id"/> <!--id-->
+        <id property="id" column="user_id"/> <!--id-->
+        <result property="user_id" column="user_id"/>
         <result property="user_name" column="user_name"/>
         <result property="user_avatar" column="user_avatar"/>
         <result property="user_gender" column="user_gender"/>
@@ -41,19 +42,11 @@
     
     <!-- 
     	更新某个用户信息
-    	public void updateUser(User user);
+    	public void updateUser(int id，User user);
      -->
      <update id="updateUser" parameterType="com.tool.api.entity.User">
      	update user 
      		set user_birthday = #{user_birthday}, user_target = #{user_target}, user_motto = #{user_motto}, user_exam_date = #{user_exam_date} 
-     			where user_id = #{user_id}
+     			where id = #{id}
      </update>
-     
-     <!-- 
-     	删除某个用户
-     	public void deleteUser(String user_id);
-      -->
-     <delete id="deleteUser">
-     	delete from user where user_id = #{user_id}
-     </delete>
 </mapper>

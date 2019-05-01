@@ -22,12 +22,12 @@ public class TokenController {
      * @url /token
      * @POST code
      * @note 虽然查询应该使用get，但为了稍微增强安全性，所以使用POST
-     * http://localhost:8080/tool/token
+     * http://localhost:8080/tool/v1/token
      */
-    @RequestMapping(value = "/token", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
+    @RequestMapping(value = "/v1/token", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
     @ResponseBody
     public String getToken(@RequestBody String code) throws Exception {
-        if(JSON.parseObject(code).isEmpty()){
+        if(JSON.parseObject(code).getString("code")==null){
             throw new BaseException("error_code:2000:msg:code不能为空");
         }
         String token = userTokenService.getToken(JSON.parseObject(code).getString("code"));

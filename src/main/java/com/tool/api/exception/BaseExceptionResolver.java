@@ -47,7 +47,8 @@ public class BaseExceptionResolver implements HandlerExceptionResolver {
         //异常状态码统一设为400
         modelAndView.setStatus(BAD_REQUEST);
         //将错误信息传到页面格式返回
-        modelAndView.addObject(map);
+        modelAndView.addObject("error_code",error_code);
+        modelAndView.addObject("msg",msg);
         return modelAndView;
     }
 }
