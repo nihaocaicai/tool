@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tool.api.dao.DiaryDao">
+	<!--根据id查询用户信息 -->
+	<select id="findDiaryByUserId" parameterType="String"
+		resultType="com.tool.api.entity.Diary">
+		select * from Diary where user_id=#{id}
+	</select>
+	
+	<!-- 根据id和时间来获取某用户某时间段的日记记录 -->
+	<select id = "findDiaryByDiaryId" parameterType = "String" resultType = "com.tool.api.entity.Diary">
+    	select * from Diary where diary_id = #{diary_id}
+    </select>
+
+	<!-- 插入一条用户日记记录 -->
+	<insert id="insertDiary" parameterType="com.tool.api.entity.Diary">
+		insert into Diary(user_id, diary_title, diary_content, diary_write_time, diary_write_place)
+		values (#{user_id}, #{diary_title}, #{diary_content}, #{diary_write_time}, #{diary_write_place})
+	</insert>
+	
+	<!-- 更新某用户某时间段日记记录 -->
+	<update id = "updateDiary" parameterType = "com.tool.api.entity.Diary">
+    	update Diary
+    		set Diary.diary_title = #{diary_title}, Diary.diary_content = #{diary_content}
+    			where user_id = #{user_id} and diary_write_time = #{diary_write_time}
+    </update>
+
+	<!-- 删除某用户某时间一条日记记录 -->
+	<delete id="deleteDiary" parameterType="String">
+		delete from Diary where diary_id=#{diary_id}
+	</delete>
+</mapper>
