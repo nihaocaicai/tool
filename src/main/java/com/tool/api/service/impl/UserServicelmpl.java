@@ -9,17 +9,33 @@ import com.tool.api.service.UserService;
 
 @Service
 @Transactional
-public class UserServicelmpl implements UserService{
-//    注解注入UserDao
-    @Autowired
-    private UserDao userDao;
-//    查询用户
-    public User findUserById(int id){
-    	return this.userDao.findUserById(id);
-    }
+public class UserServicelmpl implements UserService {
+	//  注解注入UserDao
+	@Autowired
+	private UserDao userDao;
+
+	//  查询用户设置信息
+	public User findUserById(int id) {
+		return this.userDao.findUserById(id);
+	}
+
+	//	更新用户信息
 	@Override
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		this.userDao.updateUser(user);
+	}
+
+	//	删除用户信息
+	@Override
+	public void deleteUser(int id) {
+		// TODO Auto-generated method stub
+		this.userDao.deleteUser(id);
+	}
+
+	//	根据id查询用户是否存在
+	@Override
+	public int findUserByIdIf(int id) {
+		return this.userDao.findUserByIdIf(id);
 	}
 }

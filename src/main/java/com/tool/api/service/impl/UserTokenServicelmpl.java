@@ -60,7 +60,7 @@ public class UserTokenServicelmpl implements UserTokenService{
     private UserDao userDao;
     private String grantToken(String openid){
         //查找数据库是否有openid
-        int if_exit = this.userDao.findUserByIdIf(openid);
+        int if_exit = this.userDao.findUserByUserIdIf(openid);
 //        System.out.println(if_exit);
         // 借助微信的openid作为用户标识
         // 但在系统中的相关查询还是使用自己的uid

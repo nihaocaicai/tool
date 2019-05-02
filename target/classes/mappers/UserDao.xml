@@ -4,7 +4,7 @@
 <mapper namespace="com.tool.api.dao.UserDao">
 
     <resultMap id="userMap" type="com.tool.api.entity.User">
-        <id property="id" column="user_id"/> <!--id-->
+        <id property="id" column="id"/> <!--id-->
         <result property="user_id" column="user_id"/>
         <result property="user_name" column="user_name"/>
         <result property="user_avatar" column="user_avatar"/>
@@ -14,8 +14,8 @@
         <result property="user_motto" column="user_motto"/>
     </resultMap>
 
-    <!--查询用户是否存在-->
-    <select id="findUserByIdIf" parameterType="String" resultType="int">
+    <!--根据user_id查询用户是否存在-->
+    <select id="findUserByUserIdIf" parameterType="String" resultType="int">
         select count(*) from user where user_id=#{user_id}
     </select>
 
@@ -23,9 +23,13 @@
     <select id="findUserByUserId" parameterType="String" resultType="int">
         select id from user where user_id=#{user_id}
     </select>
-    <!--
-     	根据id查询用户信息
-      -->
+
+    <!--根据id查询用户是否存在-->
+    <select id="findUserByIdIf" parameterType="int" resultType="int">
+        select count(*) from user where id=#{id}
+    </select>
+
+    <!--根据id查询用户信息-->
     <select id="findUserById" parameterType="int" resultType="user">
         select user_birthday,user_target,user_motto,user_exam_date from user where id=#{id}
     </select>
@@ -49,4 +53,9 @@
      		set user_birthday = #{user_birthday}, user_target = #{user_target}, user_motto = #{user_motto}, user_exam_date = #{user_exam_date} 
      			where id = #{id}
      </update>
+
+    <!--删除某个用户信息-->
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
 </mapper>

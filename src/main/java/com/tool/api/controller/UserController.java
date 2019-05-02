@@ -1,16 +1,13 @@
 package com.tool.api.controller;
 
 import java.sql.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.tool.api.utils.RedisUtil;
+import com.tool.api.exception.BaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.tool.api.entity.User;
@@ -85,12 +82,21 @@ public class UserController {
     
     /*
      * 删除数据库中某个用户记录
-     * 测试例子：http://localhost:8080/tool/deleteUser?user_id=CCC
+     * 测试例子：http://localhost:8080/tool/deleteUser?id=5
      */
-    @RequestMapping("/user/info/delete")
-    public String delete(HttpServletRequest httpRequest) {
-    	Map<String,?> Map = RequestContextUtils.getInputFlashMap(httpRequest); 
-    	String token = (String) Map.get("token");
-    	return "success";
+    @RequestMapping(value = "/user/info/delete", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+    @ResponseBody
+    public String delete(String id) throws Exception{
+        int uid = Integer.parseInt(id);
+        //查找数据库是否有id
+        int if_exit = userService.findUserByIdIf(uid);
+        System.out.println(if_exit);
+        if (if_exit!=0){
+            //查询数据库有，删除
+            userService.deleteUser(uid);
+            return JSON.toJSONString(success("GET /user/info/delete"));
+        }else {
+            throw new BaseException("error_code:3000:msg:该用户在数据库中不存在");
+        }
     }
 }
