@@ -1,6 +1,7 @@
 package com.tool.api.controller;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.tool.api.entity.Arrangement;
 import com.tool.api.service.ArrangementService;
@@ -18,6 +20,8 @@ import com.tool.api.service.ArrangementService;
 public class ArrangementController {
     @Autowired
     private ArrangementService arrangementService;
+//    @Autowired
+//    private UserService userService;
     
     /*
      * 每次调用目标方法之前都会执行它
@@ -47,7 +51,7 @@ public class ArrangementController {
     *  根据id查询用户全部考试安排
     *  测试例子：http://localhost:8080/tool/findTimeById?user_id=abcddsssagafafa
     * */ 
-    @RequestMapping("/findArrangeById")
+    @RequestMapping(value = "/findArrangeById", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
     public String findArrangeByUserId(String user_id, Model model) {
     	Arrangement arrangement = arrangementService.findArrangeByUserId(user_id);
         model.addAttribute("arrangement", arrangement);
@@ -56,9 +60,9 @@ public class ArrangementController {
     
     /*
      * 插入某用户一条考试安排记录
-     *  测试例子：http://localhost:8080/tool/insertTime?user_id=abcabc&time_content=别浪费时间了，快上车&time_date=2019-04-23
+     *  测试例子：
      */
-    @RequestMapping("/insertArrange")
+    @RequestMapping(value = "/insertArrange", method = {RequestMethod.POST}, produces="application/json;charset=UTF-8")
     public String insertArrange(String user_id, String arrange_content, String arrange_place, String arrange_time,
     						 String arrange_if_prompt, String arrange_if_prompt_time, Model model){
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -71,8 +75,41 @@ public class ArrangementController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		//插入数据到数据库
 		Arrangement arrangement = new Arrangement(user_id, arrange_content, arrange_place, arrangeTime, Integer.valueOf(arrange_if_prompt), arrangeIfPromptTime);
 		arrangementService.insertArrange(arrangement);
+//		
+//		//将该次表单产生的formid与过期期限写进缓存，键值对为key:user_id, value=openIdAndFormId@Param=openid&@Param=FormId
+//		Date date = new Date();
+//		Calendar rightnow = Calendar.getInstance();
+//		rightnow.setTime(date);
+//		rightnow.add(Calendar.DATE, 7);
+//		Date endday = rightnow.getTime();
+//		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH");
+//		String formidDate = format1.format(endday);
+//		System.out.println(formidDate);
+//		//判断是否初次缓存？
+//		if(RedisOps.getObject(user_id) == null) {
+//			//取出uid对应的openid
+//			String open_id = userService.findUserIdById(Integer.parseInt(user_id));
+//			System.out.println(open_id);
+//			OpenIdAndFormId openIdAndFormId = new OpenIdAndFormId();
+//			FormId formid1 = new FormId(formid, formidDate);
+//			List<FormId> list = new ArrayList<FormId>();
+//			list.add(formid1);
+//			openIdAndFormId.setOpenid(open_id);
+//			openIdAndFormId.setFormid(list);
+//			RedisOps.setObject(user_id, openIdAndFormId);
+//		}
+//		else {
+//			OpenIdAndFormId openIdAndFormId = (OpenIdAndFormId) RedisOps.getObject(user_id);
+//			List<FormId> list = openIdAndFormId.getFormid();
+//			System.out.println("list:" + list);
+//			FormId formId2 = new FormId(formid, formidDate);
+//			list.add(formId2);
+//			openIdAndFormId.setFormid(list);
+//			RedisOps.setObject(user_id, openIdAndFormId);
+//		}
     	return "success";
     }
     	
@@ -81,7 +118,7 @@ public class ArrangementController {
      * 更新数据库某个用户考试安排记录
      *  测试例子：http://localhost:8080/tool/updateArrange?arrange_id=3&arrange_place=广财综合楼&arrange_time=2019-12-03%209:00:00
      */
-    @RequestMapping("/updateArrange")
+    @RequestMapping(value = "/updateArrange", method = {RequestMethod.POST}, produces="application/json;charset=UTF-8")
     public String updateArrange(Arrangement arrangement) {
     	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     	Date arrangeTime = null;
