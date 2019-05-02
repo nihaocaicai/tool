@@ -9,17 +9,21 @@ import com.tool.api.service.UserService;
 
 @Service
 @Transactional
-public class UserServicelmpl implements UserService {
-	//  注解注入UserDao
-	@Autowired
-	private UserDao userDao;
-
-	//  查询用户设置信息
-	public User findUserById(int id) {
-		return this.userDao.findUserById(id);
+public class UserServicelmpl implements UserService{
+//    注解注入UserDao
+    @Autowired
+    private UserDao userDao;
+    //根据uid来查openid
+	@Override
+	public String findUserIdById(int id) {
+		// TODO Auto-generated method stub
+		return userDao.findUserIdById(id);
 	}
+//    查询用户
+    public User findUserById(int id){
+    	return this.userDao.findUserById(id);
+    }
 
-	//	更新用户信息
 	@Override
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub

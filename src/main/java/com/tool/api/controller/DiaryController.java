@@ -5,11 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.tool.api.entity.Diary;
 import com.tool.api.service.DiaryService;
@@ -45,7 +45,7 @@ public class DiaryController {
     *根据id查询用户的日记记录
     *测试用例：http://localhost:8080/tool/findDiaryById?id=abcddsssagafafa
     * */ 
-    @RequestMapping("/findDiaryByUserId")
+    @RequestMapping(value = "/findDiaryByUserId", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
     public String findDiaryByUserId(String user_id, Model model) {
     	Diary diary = diaryService.findDiaryByUserId(user_id);
         model.addAttribute("diary", diary);
@@ -56,7 +56,7 @@ public class DiaryController {
      * 插入一条某用户日记记录
      * http://localhost:8080/tool/insertDiary?user_id=abcabc&diary_title=第二篇&diary_content=今天复习政治&diary_write_time=2019-6-30%206:31:06&diary_write_place=综合楼
      */
-    @RequestMapping("/insertDiary")
+    @RequestMapping(value = "/insertDiary", method = {RequestMethod.POST}, produces="application/json;charset=UTF-8")
     public String insertDiary(String user_id, String diary_title, String diary_content,
     						  String diary_write_time, String diary_write_place, Model model) throws ParseException {  
     	System.out.println("userid:" + user_id);
@@ -75,7 +75,7 @@ public class DiaryController {
      * 更新数据库某个用户记录
      * http://localhost:8080/tool/updateDiary?diary_id=2&diary_title=第二篇&diary_content=今天复习政治
      */
-    @RequestMapping("/updateDiary")
+    @RequestMapping(value = "/updateDiary", method = {RequestMethod.POST}, produces="application/json;charset=UTF-8")
     public String updateDiary(Diary diary) {
     	System.out.println(diary);
     	diaryService.updateDiary(diary);

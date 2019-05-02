@@ -2,13 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0daf71ae-8360-41e4-a00d-d380b1b93063" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/component/AccessTokenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/component/TimeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/dao/TimeDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/TemplateMessageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/TimeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/TemplateMessageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/TimeServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/utils/CommonUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/utils/MyX509TrustManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/utils/RedisOps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/utils/SerializeUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/mapperClass/AccessToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/mapperClass/FormId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/mapperClass/OpenIdAndFormId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/mapperClass/Template.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/tool/mapperClass/TemplateParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/TimeDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/spring/spring-quartz.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/mappers/TimeDao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/spring/spring-quartz.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.tool.api/tool/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.tool.api/tool/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/ArrangementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/ArrangementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/DiaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/DiaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/PlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/PlanController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/dao/PlanDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/dao/PlanDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/dao/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserServicelmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserServicelmpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserTokenServicelmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserTokenServicelmpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UserDao.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/UserDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/UserDao.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,19 +60,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
-              <caret line="15" column="80" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="80" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/controller/UserController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="99" column="9" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
+              <caret line="15" column="80" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -49,10 +69,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/controller/UserController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UserDao.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-252">
-              <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+            <state relative-caret-position="224">
+              <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -60,8 +89,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/dao/UserDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="18" column="29" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="29" />
+            <state relative-caret-position="-336">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
@@ -69,11 +98,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserServicelmpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
+            <state relative-caret-position="224">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
-                <element signature="e#872#873#0" expanded="true" />
-                <element signature="e#913#914#0" expanded="true" />
+                <element signature="e#889#890#0" expanded="true" />
+                <element signature="e#938#939#0" expanded="true" />
+                <element signature="e#1067#1068#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+            <state relative-caret-position="196">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -128,11 +158,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/mappers/PlanDao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserTokenServicelmpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tool/api/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/service/UserService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserServicelmpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mappers/UserDao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tool/api/controller/UserController.java" />
       </list>
     </option>
   </component>
@@ -158,7 +188,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
     <option name="width" value="1945" />
@@ -288,7 +318,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556780307412" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556796771779" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -417,7 +447,7 @@
       <workItem from="1556370222717" duration="1799000" />
       <workItem from="1556544895923" duration="7317000" />
       <workItem from="1556687274810" duration="3754000" />
-      <workItem from="1556693928439" duration="27421000" />
+      <workItem from="1556693928439" duration="27861000" />
     </task>
     <servers />
   </component>
@@ -454,7 +484,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="88139000" />
+    <option name="totallyTimeSpent" value="88579000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -466,10 +496,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1488" height="878" extended-state="7" />
+    <frame x="-7" y="-7" width="1488" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22167832" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22167832" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -479,7 +509,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.45844504" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.04021448" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3994638" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -783,52 +813,50 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
-          <caret line="15" column="80" lean-forward="true" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="80" />
+          <caret line="15" column="80" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserServicelmpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="38" column="15" selection-start-line="38" selection-start-column="15" selection-end-line="38" selection-end-column="15" />
-          <folding>
-            <element signature="e#872#873#0" expanded="true" />
-            <element signature="e#913#914#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/service/UserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UserDao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="18" column="29" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="99" column="9" selection-start-line="99" selection-start-column="9" selection-end-line="99" selection-end-column="9" />
+        <state relative-caret-position="56">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-336">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/UserServicelmpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#889#890#0" expanded="true" />
+            <element signature="e#938#939#0" expanded="true" />
+            <element signature="e#1067#1068#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UserDao.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
         </state>
       </provider>
     </entry>
