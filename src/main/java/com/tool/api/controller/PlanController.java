@@ -138,7 +138,7 @@ public class PlanController {
 		// 判断是否初次缓存？
 		if (RedisOps.getObject(user_id) == null) {
 			// 取出uid对应的openid
-			String open_id = userService.findUserIdById(Integer.parseInt(user_id));
+			String open_id = "";
 			System.out.println(open_id);
 			OpenIdAndFormId openIdAndFormId = new OpenIdAndFormId();
 			FormId formid1 = new FormId(formid, formidDate);

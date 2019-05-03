@@ -38,7 +38,7 @@
     <!-- 更新某个用户信息-->
     <update id="updateUser" parameterType="com.tool.api.entity.User">
      	update user
-     		set user_birthday = #{user_birthday}, user_target = #{user_target}, user_motto = #{user_motto}, user_exam_date = #{user_exam_date}
+     		set user_birthday = #{user_birthday}, user_target = #{user_target},user_name=#{user_name},user_avatar=#{user_avatar},user_gender=#{user_gender},user_city=#{user_city}, user_motto = #{user_motto}, user_exam_date = #{user_exam_date}
      			where id = #{id}
      </update>
 

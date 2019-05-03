@@ -7,41 +7,39 @@ import com.tool.api.dao.DiaryDao;
 import com.tool.api.entity.Diary;
 import com.tool.api.service.DiaryService;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 @Service
 @Transactional
 public class DiaryServiceImpl implements DiaryService{
 
 	@Autowired
 	DiaryDao diaryDao;
-	
-	@Override
-	public Diary findDiaryByUserId(String user_id) {
-		// TODO Auto-generated method stub
-		return this.diaryDao.findDiaryByUserId(user_id);
+	//    查询用户全部考研日记信息
+	public List<Diary> findDiaryById(int id) {
+		return this.diaryDao.findDiaryById(id);
 	}
-
-	@Override
-	public Diary findDiaryByDiaryId(String diary_id) {
-		// TODO Auto-generated method stub
-		return this.diaryDao.findDiaryByDiaryId(diary_id);
-	}
-
-	@Override
+//	添加考研日记
 	public void insertDiary(Diary diary) {
-		// TODO Auto-generated method stub
 		this.diaryDao.insertDiary(diary);
 	}
-
-	@Override
+//	更新考研日记
 	public void updateDiary(Diary diary) {
-		// TODO Auto-generated method stub
 		this.diaryDao.updateDiary(diary);
 	}
-
-	@Override
-	public void deleteDiary(String diary_id) {
-		// TODO Auto-generated method stub
-		this.diaryDao.deleteDiary(diary_id);
+//	删除一条考研日记
+	public void deleteDiary(Diary diary) {
+		this.diaryDao.deleteDiary(diary);
 	}
+//
+//	@Override
+//	public Diary findDiaryByDiaryId(String diary_id) {
+//		// TODO Auto-generated method stub
+//		return this.diaryDao.findDiaryByDiaryId(diary_id);
+//	}
+//
+//
 
 }

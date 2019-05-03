@@ -18,8 +18,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     /*
-      *根据id查询用户信息
-     * 测试例子：http://localhost:8080/tool/v1/user/info/show?token=abcddsssagafafa
+     *根据id查询用户信息
      */
     @RequestMapping(value = "/user/info/show", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
 	@ResponseBody
@@ -31,7 +30,6 @@ public class UserController {
     
     /*
      * 更新数据库某个用户记录
-     * 测试例子：http://localhost:8080/tool/v1/user/info/modify
      */
     @RequestMapping(value = "/user/info/modify", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
     @ResponseBody
@@ -56,7 +54,6 @@ public class UserController {
     
     /*
      * 删除数据库中某个用户记录
-     * 测试例子：http://localhost:8080/tool/deleteUser?id=5
      */
     @RequestMapping(value = "/user/info/delete", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
     @ResponseBody

@@ -9,14 +9,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class MainController {
-//	token验证
+//全局token验证
 	@ModelAttribute
 	public void verifyToken(@RequestHeader String token)throws Exception{
 			if(RedisUtil.getJedis().get(token)==null){
 				throw new BaseException("error_code:2001:msg:Token已过期或无效Token");
 			}
     }
-//userControllern start
+//userController start
 	//获取用户设置信息
 	@RequestMapping(value = "/v1/user/info/show", method = {RequestMethod.GET})
 	public String userControllerFind(@RequestHeader String token){
@@ -38,5 +38,40 @@ public class MainController {
 		String id = RedisUtil.getJedis().get(token);
 		return "redirect:/user/info/delete?id="+id;
 	}
-//userControllern end
+//userController end
+
+//diaryController start
+	//获取用户全部日记信息
+	@RequestMapping(value = "/v1/user/diarys/all", method = {RequestMethod.GET})
+	public String diaryControllerFindAll(@RequestHeader String token) {
+		String id = RedisUtil.getJedis().get(token);
+		return "redirect:/user/diarys/all?id=" + id;
+	}
+	//添加考研日记
+	@RequestMapping(value = "/v1/user/diarys/add", method = {RequestMethod.POST})
+	public String diaryControllerAdd(@RequestHeader String token,@RequestBody String user_diary_add,RedirectAttributes attr) {
+			String id = RedisUtil.getJedis().get(token);
+			attr.addFlashAttribute("id", id);
+			attr.addFlashAttribute("user_diary_add", user_diary_add);
+//		System.out.println(user_diary_add);
+			return "redirect:/user/diarys/add";
+	}
+	//修改考研日记
+	@RequestMapping(value = "/v1/user/diarys/modify", method = {RequestMethod.POST})
+	public String diaryControllerModify(@RequestHeader String token,@RequestBody String user_diary_modify,RedirectAttributes attr) {
+		String id = RedisUtil.getJedis().get(token);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("user_diary_modify", user_diary_modify);
+//		System.out.println(user_diary_modify);
+		return "redirect:/user/diarys/modify";
+	}
+	//删除考研日记
+	@RequestMapping(value = "/v1/user/diarys/delete", method = {RequestMethod.GET})
+	public String diaryControllerDelete(@RequestHeader String token,@RequestParam int diary_id){
+		String id = RedisUtil.getJedis().get(token);
+//		System.out.println(diary_id);
+		return "redirect:/user/diarys/delete?diary_id="+diary_id+"&id="+id;
+	}
+
+//diaryController end
 }
