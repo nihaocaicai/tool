@@ -21,6 +21,5 @@ public interface PlanService {
 
 	public void deletePlan(Plan plan);
 
-//	public Plan findPlanByPlanId(String plan_id);
 
 }

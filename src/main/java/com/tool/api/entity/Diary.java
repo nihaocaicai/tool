@@ -1,6 +1,7 @@
 package com.tool.api.entity;
 
 
+import com.alibaba.fastjson.annotation.JSONField;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
@@ -10,7 +11,7 @@ public class Diary {
 	private Integer user_id;			//用户id
 	private String diary_title;		//日记标题
 	private String diary_content;	//日记内容
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JSONField(format="yyyy-MM-dd")
 	private Date diary_write_date; //日期
 	private String diary_write_time; //时间
 	private String diary_write_place; //地点

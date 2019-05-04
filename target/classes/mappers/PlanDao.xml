@@ -42,9 +42,4 @@
 		delete from Plan where plan_id = #{plan_id} and user_id = #{user_id}
 	</delete>
 
-
-	<!--&lt;!&ndash; 根据plan_id来确定某用户某个时间段的计划 &ndash;&gt;-->
-	 <!--<select id = "findPlanByPlanId" parameterType = "java.util.HashMap" resultType = "com.tool.api.entity.Plan">-->
-    	<!--select * from Plan where plan_id = #{plan_id}-->
-    <!--</select>-->
 </mapper>

@@ -1,5 +1,8 @@
 package com.tool.api.entity;
 
+
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class User {
@@ -9,9 +12,11 @@ public class User {
     private String user_avatar;
     private Integer user_gender;
     private String user_city;
+    @JSONField(format="yyyy-MM-dd")
     private Date user_birthday;
     private String user_target;
     private String user_motto;
+    @JSONField(format="yyyy-MM-dd")
     private Date user_exam_date;
 
     public User() {

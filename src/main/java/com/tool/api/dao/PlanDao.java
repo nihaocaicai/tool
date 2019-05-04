@@ -35,9 +35,4 @@ public interface PlanDao {
      */
     public void deletePlan(Plan plan);
 
-//    /*
-//     * 根据id和时间查询用户全部计划进度安排信息
-//     */
-//    public Plan findPlanByPlanId(String plan_id);
-//
 }

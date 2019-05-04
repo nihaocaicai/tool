@@ -1,5 +1,7 @@
 package com.tool.api.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 import java.sql.Time;
 
@@ -8,10 +10,13 @@ public class Arrangement {
 	private int user_id;		//用户唯一标示ID
 	private String arrange_content;		//安排内容
 	private String arrange_place;		//安排地点
+	@JSONField(format="yyyy-MM-dd")
 	private Date arrange_date;			//安排日期
 	private String arrange_time;			//安排时间
 	private int arrange_if_prompt;		//是否打开微信提示考试时间
+	@JSONField(format="yyyy-MM-dd")
 	private Date arrange_if_prompt_date;//提示日期
+	@JSONField(format="HH:mm:ss")
 	private Time arrange_if_prompt_time;//提示时间
 	private int right=0;
 	

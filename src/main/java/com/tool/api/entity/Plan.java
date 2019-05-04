@@ -1,11 +1,14 @@
 package com.tool.api.entity;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 import java.sql.Date;
 
 public class Plan {
 	private int plan_id;		//计划id，自增
 	private int user_id;			//用户id
 	private String plan_content;	//计划内容
+	@JSONField(format="yyyy-MM-dd")
 	private Date plan_date;        //计划开始的日期
 	private String plan_start_time;	//计划开始时间
 	private String plan_end_time;		//计划结束时间
