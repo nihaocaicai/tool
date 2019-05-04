@@ -6,19 +6,19 @@
 	<!-- 根据id和时间date来查询该日期前所有计划信息 -->
 	<select id="findPlanAllBefore" parameterType="com.tool.api.entity.Plan"
 			resultType="com.tool.api.entity.Plan">
-		select * from Plan where user_id=#{user_id} and plan_date &lt; #{plan_date} order by plan_date asc
+		select plan_id,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish from Plan where user_id=#{user_id} and plan_date &lt; #{plan_date} order by plan_date asc
 	</select>
 
 	<!-- 根据id和时间date来查询该日期后所有计划信息,包括当天-->
 	<select id="findPlanAllAfter" parameterType="com.tool.api.entity.Plan"
 	resultType="com.tool.api.entity.Plan">
-	select * from Plan where user_id=#{user_id} and plan_date >= #{plan_date} order by plan_date asc
+	select plan_id,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish from Plan where user_id=#{user_id} and plan_date >= #{plan_date} order by plan_date asc
 	</select>
 
 	<!--根据id和时间date查询用户当天计划信息 -->
 	<select id="findPlanAllIntraday" parameterType="com.tool.api.entity.Plan"
 		resultType="com.tool.api.entity.Plan">
-		select * from Plan where user_id=#{user_id} and plan_date like '%${plan_date}%'
+		select plan_id,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish from Plan where user_id=#{user_id} and plan_date like '%${plan_date}%'
 	</select>
 
 	<!-- 插入一条用户计划记录 -->
