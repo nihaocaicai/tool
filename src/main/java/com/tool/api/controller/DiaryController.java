@@ -1,17 +1,19 @@
 package com.tool.api.controller;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
+import com.tool.api.utils.responseDataUtils.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.tool.api.entity.Diary;
 import com.tool.api.service.DiaryService;
 
-import static com.tool.api.utils.ResponseData.responseData;
+import static com.tool.api.utils.responseDataUtils.ResponseData.responseData;
 import static com.tool.api.utils.responseSuccess.success;
 
 @Controller
@@ -24,10 +26,11 @@ public class DiaryController {
     * */ 
     @RequestMapping(value = "/user/diarys/all", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String findUserById(String id){
+	public String findUserById(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
 		List<Diary> diary = diaryService.findDiaryById(uid);
-		HashMap<String,List<Diary>> map = responseData(diary);
+//		加入转换的数据，类中所在的日期方法名,类的对象
+		HashMap<String,List<Diary>> map = ResponseData.<Diary>responseData(diary,"getDiary_write_date",new Diary());
 		return JSON.toJSONString(map);
 	}
 	/*

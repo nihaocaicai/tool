@@ -72,6 +72,40 @@ public class MainController {
 //		System.out.println(diary_id);
 		return "redirect:/user/diarys/delete?diary_id="+diary_id+"&id="+id;
 	}
-
 //diaryController end
+
+//arrangementController start
+	//获取用户全部安排信息
+	@RequestMapping(value = "/v1/user/arrangements/all", method = {RequestMethod.GET})
+	public String arrangementControllerFindAll(@RequestHeader String token) {
+	String id = RedisUtil.getJedis().get(token);
+	return "redirect:/user/arrangements/all?id=" + id;
+	}
+	//添加考研安排
+	@RequestMapping(value = "/v1/user/arrangements/add", method = {RequestMethod.POST})
+	public String arrangementControllerAdd(@RequestHeader String token,@RequestBody String user_arrangement_add,RedirectAttributes attr) {
+		String id = RedisUtil.getJedis().get(token);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("user_arrangement_add", user_arrangement_add);
+		System.out.println(user_arrangement_add);
+		return "redirect:/user/arrangements/add";
+	}
+	//修改考研安排
+	@RequestMapping(value = "/v1/user/arrangements/modify", method = {RequestMethod.POST})
+	public String arrangementControllerModify(@RequestHeader String token,@RequestBody String user_arrangement_modify,RedirectAttributes attr) {
+		String id = RedisUtil.getJedis().get(token);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("user_arrangement_modify", user_arrangement_modify);
+//		System.out.println(user_arrangement_modify);
+		return "redirect:/user/arrangements/modify";
+	}
+	//删除考研日记
+	@RequestMapping(value = "/v1/user/arrangements/delete", method = {RequestMethod.GET})
+	public String arrangementControllerDelete(@RequestHeader String token,@RequestParam int arrange_id){
+		String id = RedisUtil.getJedis().get(token);
+//		System.out.println(arrange_id);
+		return "redirect:/user/arrangements/delete?arrange_id="+arrange_id+"&id="+id;
+	}
+
+//arrangementController end
 }
