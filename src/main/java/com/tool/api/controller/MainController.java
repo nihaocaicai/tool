@@ -96,7 +96,7 @@ public class MainController {
 		String id = RedisUtil.getJedis().get(token);
 		attr.addFlashAttribute("id", id);
 		attr.addFlashAttribute("user_arrangement_modify", user_arrangement_modify);
-//		System.out.println(user_arrangement_modify);
+		System.out.println(user_arrangement_modify);
 		return "redirect:/user/arrangements/modify";
 	}
 	//删除考研日记
@@ -106,6 +106,52 @@ public class MainController {
 //		System.out.println(arrange_id);
 		return "redirect:/user/arrangements/delete?arrange_id="+arrange_id+"&id="+id;
 	}
-
 //arrangementController end
+
+//planController start
+
+	//获取用户全部计划信息（当天之前的，不包括当天）
+	@RequestMapping(value = "/v1/user/plans/all/before", method = {RequestMethod.GET})
+	public String planControllerFindAllBefore(@RequestHeader String token) {
+		String id = RedisUtil.getJedis().get(token);
+		return "redirect:/user/plans/all/before?id=" + id;
+	}
+	//获取用户全部计划信息（当天之后的，包括当天）
+	@RequestMapping(value = "/v1/user/plans/all/after", method = {RequestMethod.GET})
+	public String planControllerFindAllAfter(@RequestHeader String token) {
+		String id = RedisUtil.getJedis().get(token);
+		return "redirect:/user/plans/all/after?id=" + id;
+	}
+	//获取用户全部计划信息（当天）
+	@RequestMapping(value = "/v1/user/plans/all/intraday", method = {RequestMethod.GET})
+	public String planControllerFindAllIntraday(@RequestHeader String token) {
+		String id = RedisUtil.getJedis().get(token);
+		return "redirect:/user/plans/all/intraday?id=" + id;
+	}
+	//添加考研计划
+	@RequestMapping(value = "/v1/user/plans/add", method = {RequestMethod.POST})
+	public String planControllerAdd(@RequestHeader String token,@RequestBody String user_plan_add,RedirectAttributes attr) {
+		String id = RedisUtil.getJedis().get(token);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("user_plan_add", user_plan_add);
+		System.out.println(user_plan_add);
+		return "redirect:/user/plans/add";
+	}
+	//修改考研安排
+	@RequestMapping(value = "/v1/user/plans/modify", method = {RequestMethod.POST})
+	public String planControllerModify(@RequestHeader String token,@RequestBody String user_plan_modify,RedirectAttributes attr) {
+		String id = RedisUtil.getJedis().get(token);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("user_plan_modify", user_plan_modify);
+		System.out.println(user_plan_modify);
+		return "redirect:/user/plans/modify";
+	}
+	//删除考研日记
+	@RequestMapping(value = "/v1/user/plans/delete", method = {RequestMethod.GET})
+	public String planControllerDelete(@RequestHeader String token,@RequestParam int plan_id){
+		String id = RedisUtil.getJedis().get(token);
+//		System.out.println(arrange_id);
+		return "redirect:/user/plans/delete?plan_id="+plan_id+"&id="+id;
+	}
+//planController end
 }

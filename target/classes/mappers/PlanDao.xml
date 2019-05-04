@@ -3,46 +3,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tool.api.dao.PlanDao">
 
-	<!--根据id和时间date查询用户当天计划信息 -->
-	<select id="findPlanAllIntraday" parameterType="java.util.HashMap"
-		resultType="com.tool.api.entity.Plan">
-		select * from Plan where user_id=#{user_id} and plan_start_time like '%${date}%'
-	</select>
-	
 	<!-- 根据id和时间date来查询该日期前所有计划信息 -->
-	<select id="findPlanAllBefore" parameterType="java.util.List"
-		resultType="com.tool.api.entity.Plan">
-		select * from Plan where user_id=#{user_id} and plan_start_time &lt; #{date} order by plan_start_time asc
+	<select id="findPlanAllBefore" parameterType="com.tool.api.entity.Plan"
+			resultType="com.tool.api.entity.Plan">
+		select * from Plan where user_id=#{user_id} and plan_date &lt; #{plan_date} order by plan_date asc
 	</select>
-	
-	<!-- 根据id和时间date来查询该日期后所有计划信息 -->
-	<select id="findPlanAllAfter" parameterType="java.util.List"
-		resultType="com.tool.api.entity.Plan">
-		select * from Plan where user_id=#{user_id} and plan_start_time &gt; #{date} order by plan_start_time asc
+
+	<!-- 根据id和时间date来查询该日期后所有计划信息,包括当天-->
+	<select id="findPlanAllAfter" parameterType="com.tool.api.entity.Plan"
+	resultType="com.tool.api.entity.Plan">
+	select * from Plan where user_id=#{user_id} and plan_date >= #{plan_date} order by plan_date asc
 	</select>
-	
-	<!-- 根据plan_id来确定某用户某个时间段的计划 -->
-	 <select id = "findPlanByPlanId" parameterType = "java.util.HashMap" resultType = "com.tool.api.entity.Plan">
-    	select * from Plan where plan_id = #{plan_id}
-    </select>
+
+	<!--根据id和时间date查询用户当天计划信息 -->
+	<select id="findPlanAllIntraday" parameterType="com.tool.api.entity.Plan"
+		resultType="com.tool.api.entity.Plan">
+		select * from Plan where user_id=#{user_id} and plan_date like '%${plan_date}%'
+	</select>
 
 	<!-- 插入一条用户计划记录 -->
 	<insert id="insertPlan" parameterType="com.tool.api.entity.Plan">
-		insert into Plan(user_id, plan_content, plan_start_time, plan_end_time, plan_if_repeat,
-						 plan_if_prompt, plan_if_prompt_time, plan_if_finish)
-		values (#{user_id}, #{plan_content}, #{plan_start_time}, #{plan_end_time}, #{plan_if_repeat},
-				#{plan_if_prompt}, #{plan_if_prompt_time}, #{plan_if_finish})
+	insert into Plan(user_id, plan_content, plan_date,plan_start_time, plan_end_time, plan_if_repeat,
+	plan_if_finish)
+	values (#{user_id}, #{plan_content},#{plan_date},#{plan_start_time}, #{plan_end_time}, #{plan_if_repeat},
+	 #{plan_if_finish})
 	</insert>
-	
+
 	<!-- 更新一条用户计划记录 -->
 	<update id = "updatePlan" parameterType = "com.tool.api.entity.Plan">
     	update Plan
-    		set Plan.plan_content = #{plan_content}
-    			where plan_id = #{plan_id}
+    		set plan_content = #{plan_content},plan_date=#{plan_date},plan_start_time=#{plan_start_time},plan_end_time=#{plan_end_time},
+    		plan_if_repeat=#{plan_if_repeat},plan_if_finish=#{plan_if_finish}
+    			where plan_id = #{plan_id} and user_id = #{user_id}
     </update>
 
 	<!-- 删除一条用户计划记录 -->
-	<delete id="deletePlan" parameterType="java.util.HashMap">
-		delete from Plan where plan_id = #{plan_id}
+	<delete id="deletePlan" parameterType="com.tool.api.entity.Plan">
+		delete from Plan where plan_id = #{plan_id} and user_id = #{user_id}
 	</delete>
+
+
+	<!--&lt;!&ndash; 根据plan_id来确定某用户某个时间段的计划 &ndash;&gt;-->
+	 <!--<select id = "findPlanByPlanId" parameterType = "java.util.HashMap" resultType = "com.tool.api.entity.Plan">-->
+    	<!--select * from Plan where plan_id = #{plan_id}-->
+    <!--</select>-->
 </mapper>
