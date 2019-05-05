@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.tool.api.entity.Plan;
-import com.tool.mapperClass.FindPlanAllAfter;
-import com.tool.mapperClass.FindPlanByIdAndDate;
 
 public interface PlanService {
 	public List<Plan> findPlanAllBefore(Plan plan);
