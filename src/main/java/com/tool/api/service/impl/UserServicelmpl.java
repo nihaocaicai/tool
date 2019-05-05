@@ -7,7 +7,7 @@ import com.tool.api.dao.UserDao;
 import com.tool.api.entity.User;
 import com.tool.api.service.UserService;
 
-@Service
+@Service("UserService")
 @Transactional
 public class UserServicelmpl implements UserService{
 //    注解注入UserDao
