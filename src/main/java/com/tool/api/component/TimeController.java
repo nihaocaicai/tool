@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import com.tool.api.entity.Plan;
+import org.springframework.stereotype.Component;
+import com.tool.api.entity.Arrangement;
 import com.tool.api.service.TemplateMessageService;
 import com.tool.api.service.TimeService;
 import com.tool.api.utils.RedisOps;
@@ -25,27 +26,33 @@ public class TimeController {
 	public void taskCycle() throws Exception {
 		// 当前时间
 		Date nowdate = new Date();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH");
+		SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat formatHour = new SimpleDateFormat("HH");
+		
+		String date = formatDate.format(nowdate);
+		String hour = formatHour.format(nowdate);
+		
 		// 根据当前时间去查数据库中与之匹配并且开启提醒的用户，并返回一个列表
-		List<Plan> list = null;
-		list = timeService.FindUid(format.format(nowdate));
+		List<Arrangement> list = null;
+		list = timeService.FindUid(date, hour);
 		// 获取access_token
 		String access_token = RedisOps.get("access_token");
+		System.out.println("\naccess_token:" + access_token);
+		System.out.println("\nlist:" + list);
 		if (list != null) {
 			// 遍历符合要求的用户
-			for (Plan plan : list) {
+			for (Arrangement arrangement : list) {
 				// 计划内容
-				String course = plan.getPlan_content();
+				String course = arrangement.getArrange_content();
 				// 获取用户具体安排日期
 				SimpleDateFormat formatdate = new SimpleDateFormat("yyyy-MM-dd");
-				String date = formatdate.format(plan.getPlan_start_time());
+				String arrangeDate = formatdate.format(arrangement.getArrange_date());
 				// 获取用户具体安排时间
-				SimpleDateFormat formattime = new SimpleDateFormat("HH-mm-ss");
-				String time = formattime.format(plan.getPlan_start_time());
-//				// 获取考试地点
-//				String place = arrange.getArrange_place();
+				String arrangeTime = arrangement.getArrange_time();
+				// 获取考试地点
+				String place = arrangement.getArrange_place();
 
-				String uid = plan.getUser_id();
+				String uid = String.valueOf(arrangement.getUser_id());
 				// 从缓存中获取用户uid所对应的openid与对应的list<formid>
 				OpenIdAndFormId openIdAndFormId = (OpenIdAndFormId) RedisOps.getObject(uid);
 				System.out.println("\nopenIdAndFormId:" + openIdAndFormId);
@@ -58,14 +65,13 @@ public class TimeController {
 				SimpleDateFormat formatenddate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				//
 				if (listforms != null) {
-					System.out.println("listforms:" + listforms);
 					for (FormId formIdTable : listforms) {
 						String enddate = formIdTable.getEndday();
 						String now = formatenddate.format(nowdate);
 						// 如果当前formid失效日期大于当前时间，则证明该formid有效
 						if (now.compareTo(enddate) < 0) {
 							formid = formIdTable.getFormid();
-							templateMessageService.sendMessage(openid, access_token, formid, "考试通知", course, date, time,
+							templateMessageService.sendMessage(openid, access_token, formid, place, course, arrangeDate, arrangeTime,
 									"一教");
 							// 消耗一个formid
 							listforms.remove(0);

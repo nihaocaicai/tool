@@ -136,4 +136,14 @@ public class Arrangement {
 	public void setRight(int right) {
 		this.right = right;
 	}
+
+	@Override
+	public String toString() {
+		return "Arrangement [arrange_id=" + arrange_id + ", user_id=" + user_id + ", arrange_content=" + arrange_content
+				+ ", arrange_place=" + arrange_place + ", arrange_date=" + arrange_date + ", arrange_time="
+				+ arrange_time + ", arrange_if_prompt=" + arrange_if_prompt + ", arrange_if_prompt_date="
+				+ arrange_if_prompt_date + ", arrange_if_prompt_time=" + arrange_if_prompt_time + ", right=" + right
+				+ "]";
+	}
+	
 }

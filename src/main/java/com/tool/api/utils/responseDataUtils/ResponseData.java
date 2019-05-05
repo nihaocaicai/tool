@@ -17,7 +17,7 @@ public class ResponseData {
         HashMap<String,List<T>> map=new HashMap<>();
         List<T> pList = new ArrayList<>();
 
-//        反射，根据对象对象得到类名
+//        反射，根据对象得到类名
         String className = obj.getClass().getName();
 
         int size=valueBefore.size();

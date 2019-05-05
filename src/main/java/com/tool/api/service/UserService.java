@@ -3,6 +3,8 @@ import com.tool.api.entity.User;
 
 public interface UserService {
 
+//	根据uid去查openid
+	public String findUserIdById(int id);
 //	根据UID查询用户信息
     public User findUserById(int id);
 //  根据信息更新表格信息

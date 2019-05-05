@@ -29,4 +29,10 @@ public class UserServicelmpl implements UserService{
 	public int findUserByIdIf(int id) {
 		return this.userDao.findUserByIdIf(id);
 	}
+
+	@Override
+	public String findUserIdById(int id) {
+		// TODO Auto-generated method stub
+		return this.userDao.findUserIdById(id);
+	}
 }

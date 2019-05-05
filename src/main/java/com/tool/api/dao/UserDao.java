@@ -4,6 +4,9 @@ import com.tool.api.entity.User;
 * User接口文件
 * */
 public interface UserDao {
+	
+	//根据uid来获取openid
+	public String findUserIdById(int id);
 
 //token使用start
     //根据user_id查询用户是否存在
