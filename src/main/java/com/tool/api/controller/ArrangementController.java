@@ -3,24 +3,16 @@ package com.tool.api.controller;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-
 import com.alibaba.fastjson.JSON;
-import com.tool.api.utils.RedisOps;
+import com.tool.api.utils.FormidCache;
 import com.tool.api.utils.responseDataUtils.ResponseData;
-import com.tool.mapperClass.FormId;
-import com.tool.mapperClass.OpenIdAndFormId;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.tool.api.entity.Arrangement;
 import com.tool.api.service.ArrangementService;
-import com.tool.api.service.UserService;
 
 import static com.tool.api.utils.responseSuccess.success;
 
@@ -28,9 +20,7 @@ import static com.tool.api.utils.responseSuccess.success;
 public class ArrangementController {
 	@Autowired
 	private ArrangementService arrangementService;
-	@Autowired
-	private UserService userService;
-
+	
 	/*
 	 * 根据id查询用户的全部日记记录
 	 */
@@ -54,8 +44,6 @@ public class ArrangementController {
 	@ResponseBody
 	public String addArrangement(@ModelAttribute("id") String id,
 			@ModelAttribute("user_arrangement_add") String user_arrangement_add) {
-//        System.out.println(id);
-//        System.out.println(user_info);
 		int uid = Integer.parseInt(id);
 //        这里获取formid
 		String arrange_form_id = JSON.parseObject(user_arrangement_add).getString("arrange_form_id");
@@ -74,35 +62,8 @@ public class ArrangementController {
 
 		// 将该次表单产生的formid与过期期限写进缓存，键值对为key:user_id,
 		// value=openIdAndFormId@Param=openid&@Param=FormId
-		java.util.Date date = new java.util.Date();
-		Calendar rightnow = Calendar.getInstance();
-		rightnow.setTime(date);
-		rightnow.add(Calendar.DATE, 7);
-		java.util.Date endday = rightnow.getTime();
-		SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd HH");
-		String formidDate = format1.format(endday);
-		System.out.println(formidDate);
-		// 判断是否初次缓存？
-		if (RedisOps.getObject(id) == null) {
-			// 取出uid对应的openid
-			String open_id = userService.findUserIdById(uid);
-			System.out.println(open_id);
-			OpenIdAndFormId openIdAndFormId = new OpenIdAndFormId();
-			FormId formid1 = new FormId(arrange_form_id, formidDate);
-			List<FormId> list = new ArrayList<FormId>();
-			list.add(formid1);
-			openIdAndFormId.setOpenid(open_id);
-			openIdAndFormId.setFormid(list);
-			RedisOps.setObject(id, openIdAndFormId);
-		} else {
-			OpenIdAndFormId openIdAndFormId = (OpenIdAndFormId) RedisOps.getObject(id);
-			List<FormId> list = openIdAndFormId.getFormid();
-			System.out.println("list:" + list);
-			FormId formId2 = new FormId(arrange_form_id, formidDate);
-			list.add(formId2);
-			openIdAndFormId.setFormid(list);
-			RedisOps.setObject(id, openIdAndFormId);
-		}
+		new FormidCache().saveFormidCache(id, arrange_form_id);
+		
 		return JSON.toJSONString(success("POST /user/arrangements/add"));
 	}
 
@@ -129,6 +90,11 @@ public class ArrangementController {
 //    	根据信息去更新相关安排
 		arrangementService.updateArrange(new Arrangement(arrange_id, uid, arrange_content, arrange_place, arrange_date,
 				arrange_time, arrange_if_prompt, arrange_if_prompt_date, arrange_if_prompt_time));
+		
+		// 将该次表单产生的formid与过期期限写进缓存，键值对为key:user_id,
+		// value=openIdAndFormId@Param=openid&@Param=FormId
+		new FormidCache().saveFormidCache(id, arrange_form_id);
+		
 		return JSON.toJSONString(success("POST /user/arrangements/modify"));
 	}
 
