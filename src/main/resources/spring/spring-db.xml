@@ -10,7 +10,7 @@
     <context:property-placeholder location="classpath:db.properties" />
 
     <!-- 2.数据库连接池 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <!-- 配置连接池属性 -->
         <property name="driverClass" value="${jdbc.driver}" />
         <property name="jdbcUrl" value="${jdbc.url}" />
@@ -18,14 +18,11 @@
         <property name="password" value="${jdbc.password}" />
 
         <!-- c3p0连接池的私有属性 -->
-        <property name="maxPoolSize" value="30" />
-        <property name="minPoolSize" value="10" />
-        <!-- 关闭连接后不自动commit -->
-        <property name="autoCommitOnClose" value="false" />
-        <!-- 获取连接超时时间 -->
-        <property name="checkoutTimeout" value="10000" />
-        <!-- 当获取连接失败重试次数 -->
-        <property name="acquireRetryAttempts" value="2" />
+        <property name="maxPoolSize" value="30" />    <!--最大连接数30-->
+        <property name="initialPoolSize" value="10"/> <!--初始化连接数10-->
+        <property name="minPoolSize" value="10" />    <!--最小连接数10-->
+        <property name="acquireIncrement" value="5" />    <!--连接池在无空闲连接可用时一次性创建的新数据库连接数-->
+
     </bean>
 
     <!-- 3.配置SqlSessionFactory对象 -->

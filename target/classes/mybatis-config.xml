@@ -15,8 +15,8 @@
         <!--<setting name="mapUnderscoreToCamelCase" value="true" />-->
         <!--表示字段为null时依旧返回字段，值为null-->
         <setting name="callSettersOnNulls" value="true"/>
-        <!-- 开启全局二级缓存 -->
-        <!-- <setting name="cacheEnable" value="true"/> -->
+         <!--开启全局二级缓存 -->
+         <!--<setting name="cacheEnable" value="true"/>-->
         <!-- 将jdbcNULL原本返回类型OTHER转换成NULL -->
         <setting name="jdbcTypeForNull" value = "NULL"></setting>
     </settings>
