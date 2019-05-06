@@ -7,17 +7,17 @@
 		resultType="com.tool.api.entity.Arrangement">
 		select arrange_id,arrange_content,arrange_place,arrange_date,arrange_time,arrange_if_prompt,
 		arrange_if_prompt_date,arrange_if_prompt_time
-		from Arrangement where user_id=#{user_id} order by arrange_date asc
+		from arrangement where user_id=#{user_id} order by arrange_date asc
 	</select>
 	<!-- 插入一条用户考试安排 -->
 	<insert id="insertArrange" parameterType="com.tool.api.entity.Arrangement">
-		insert into Arrangement(user_id, arrange_content, arrange_place, arrange_date,arrange_time, arrange_if_prompt, arrange_if_prompt_date, arrange_if_prompt_time)
+		insert into arrangement(user_id, arrange_content, arrange_place, arrange_date,arrange_time, arrange_if_prompt, arrange_if_prompt_date, arrange_if_prompt_time)
 		values (#{user_id}, #{arrange_content}, #{arrange_place}, #{arrange_date},#{arrange_time}, #{arrange_if_prompt}, #{arrange_if_prompt_date}, #{arrange_if_prompt_time})
 	</insert>
 
 	<!-- 更新某用户考试安排 -->
 	<update id = "updateArrange" parameterType = "com.tool.api.entity.Arrangement">
-    	update Arrangement
+    	update arrangement
     		set arrange_content=#{arrange_content}, arrange_place=#{arrange_place},
     		    arrange_date=#{arrange_date},arrange_time=#{arrange_time},
     		    arrange_if_prompt=#{arrange_if_prompt}, arrange_if_prompt_date=#{arrange_if_prompt_date},
@@ -27,12 +27,12 @@
 
 	<!-- 删除某用户考试安排-->
 	<delete id="deleteArrange" parameterType = "com.tool.api.entity.Arrangement">
-		delete from Arrangement where arrange_id = #{arrange_id} and user_id=#{user_id}
+		delete from arrangement where arrange_id = #{arrange_id} and user_id=#{user_id}
 	</delete>
 	
 	<!--&lt;!&ndash; 根据arrange_id来查询用户信息 &ndash;&gt;-->
 	<!--<select id = "findArrangeByArrangeId" parameterType = "String" resultType = "com.tool.api.entity.Arrangement">-->
-    	<!--select * from Arrangement where arrange_id = #{arrange_id}-->
+    	<!--select * from arrangement where arrange_id = #{arrange_id}-->
     <!--</select>-->
 
 </mapper>
