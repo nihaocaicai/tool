@@ -7,7 +7,7 @@ import com.tool.api.entity.User;
 import com.tool.api.service.UserTokenService;
 import com.tool.api.utils.HttpRequest;
 import com.tool.api.utils.RandomString;
-import com.tool.api.utils.RedisUtil;
+import com.tool.api.utils.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,8 +105,7 @@ public class UserTokenServicelmpl implements UserTokenService{
          */
         RedisUtil.getJedis().set(key,value,"NX","EX",3600*24*6);
 //        System.out.println(key+"+"+RedisUtil.getJedis().get(key));
-//        释放资源
-        RedisUtil.getJedis().close();
+//        RedisUtil.getJedis().close();
         return key;
     }
 }

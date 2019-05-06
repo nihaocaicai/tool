@@ -1,10 +1,9 @@
 package com.tool.api.component;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSON;
 import com.tool.api.utils.HttpRequest;
-import com.tool.api.utils.RedisUtil;
+import com.tool.api.utils.redis.RedisUtil;
 
 //注释关闭计时器
 //@Component

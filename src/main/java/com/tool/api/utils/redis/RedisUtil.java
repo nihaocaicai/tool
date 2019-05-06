@@ -1,8 +1,10 @@
-package com.tool.api.utils;
+package com.tool.api.utils.redis;
 
+import org.springframework.cglib.proxy.Enhancer;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
+import org.springframework.cglib.proxy.Callback;
 
 public final class RedisUtil {
 
@@ -39,10 +41,6 @@ public final class RedisUtil {
     static {
         try {
             JedisPoolConfig config = new JedisPoolConfig();
-//            config.setMaxActive(MAX_ACTIVE);
-//            config.setMaxIdle(MAX_IDLE);
-//            config.setMaxWait(MAX_WAIT);
-//            config.setTestOnBorrow(TEST_ON_BORROW);
             jedisPool = new JedisPool(config, ADDR, PORT, TIMEOUT, AUTH);
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,23 +52,19 @@ public final class RedisUtil {
      * @return
      */
     public synchronized static Jedis getJedis() {
-        try {
-            if (jedisPool != null) {
-                Jedis resource = jedisPool.getResource();
-                return resource;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        Enhancer enhancer = new Enhancer();
+        //设置代理的父类，就设置需要代理的类
+        enhancer.setSuperclass(Jedis.class);
+        //设置自定义的代理方法
+        Callback callback = new JedisHandler(jedisPool);
+        enhancer.setCallback(callback);
+
+        Object o = enhancer.create();
+        Jedis jedis = null;
+        if (o instanceof Jedis){
+            jedis = (Jedis) o;
         }
+        return jedis;
     }
 
-    /**
-     * 释放jedis资源
-     */
-    public static void returnResource() {
-            jedisPool.close();
-    }
 }

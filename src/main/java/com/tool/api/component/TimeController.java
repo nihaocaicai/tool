@@ -5,11 +5,10 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import com.tool.api.entity.Arrangement;
 import com.tool.api.service.TemplateMessageService;
 import com.tool.api.service.TimeService;
-import com.tool.api.utils.RedisOps;
+import com.tool.api.utils.redis.RedisOps;
 import com.tool.mapperClass.FormId;
 import com.tool.mapperClass.OpenIdAndFormId;
 

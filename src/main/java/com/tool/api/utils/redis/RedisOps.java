@@ -1,5 +1,6 @@
-package com.tool.api.utils;
+package com.tool.api.utils.redis;
 
+import com.tool.api.utils.SerializeUtil;
 import redis.clients.jedis.Jedis;
 
 public class RedisOps {
@@ -9,7 +10,7 @@ public class RedisOps {
 		jedis.set(key, value);
 		jedis.close();
 	}
-	
+
 	//读缓存
 	public static String get(String key) {
 		Jedis jedis = RedisUtil.getJedis();
@@ -33,7 +34,7 @@ public class RedisOps {
 		jedis.close();
 		if (bytes == null) {
 			return null;
-		} 
+		}
 		else {
 			return SerializeUtil.deserialize(bytes);
 		}
