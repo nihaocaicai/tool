@@ -36,8 +36,6 @@ public class AccessTokenController {
 		 * @return
 		 */
 		RedisUtil.getJedis().set(key, value, "NX", "EX", 3600*2);
-//	        释放资源
-		RedisUtil.getJedis().close();
 		System.out.println("access_token: " + accesstoken);
 	}
 }
