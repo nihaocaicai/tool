@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
 import com.tool.api.entity.Arrangement;
 import com.tool.api.service.TemplateMessageService;
 import com.tool.api.service.TimeService;
@@ -13,7 +15,7 @@ import com.tool.mapperClass.FormId;
 import com.tool.mapperClass.OpenIdAndFormId;
 
 //注释关闭定时器
-//@Component
+@Component
 public class TimeController {
 
 	@Autowired
@@ -21,7 +23,7 @@ public class TimeController {
 	@Autowired
 	private TemplateMessageService templateMessageService;
 
-	@Scheduled(cron = "*/30 * * * * * ") // 间隔30秒执行
+	@Scheduled(cron = "10 0/1 * * * * ") // 从第十秒开始，间隔一分钟执行
 	public void taskCycle() throws Exception {
 		// 当前时间
 		Date nowdate = new Date();
@@ -70,8 +72,8 @@ public class TimeController {
 						// 如果当前formid失效日期大于当前时间，则证明该formid有效
 						if (now.compareTo(enddate) < 0) {
 							formid = formIdTable.getFormid();
-							templateMessageService.sendMessage(openid, access_token, formid, place, course, arrangeDate, arrangeTime,
-									"一教");
+							templateMessageService.sendMessage(openid, access_token, formid, "考试安排", course, arrangeDate, arrangeTime,
+									place);
 							// 消耗一个formid
 							listforms.remove(0);
 							// 将修改过的list<formid>写回对应的类

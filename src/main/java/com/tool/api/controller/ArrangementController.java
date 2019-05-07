@@ -46,6 +46,7 @@ public class ArrangementController {
 		int uid = Integer.parseInt(id);
 //        这里获取formid
 		String arrange_form_id = JSON.parseObject(user_arrangement_add).getString("arrange_form_id");
+		System.out.println("formid" + arrange_form_id);
 		String arrange_content = JSON.parseObject(user_arrangement_add).getString("arrange_content");
 		String arrange_place = JSON.parseObject(user_arrangement_add).getString("arrange_place");
 		Date arrange_date = Date.valueOf(JSON.parseObject(user_arrangement_add).getString("arrange_date"));

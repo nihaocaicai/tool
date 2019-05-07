@@ -25,8 +25,8 @@ public class Template {
 		buffer.append(String.format("\"touser\":\"%s\"", this.toUser)).append(",");
 		buffer.append(String.format("\"template_id\":\"%s\"", this.templateId)).append(",");
 		buffer.append(String.format("\"form_id\":\"%s\"", this.formid)).append(",");
-		buffer.append(String.format("\"url\":\"%s\"", this.url)).append(",");
-		buffer.append(String.format("\"topcolor\":\"%s\"", this.topColor)).append(",");
+		buffer.append(String.format("\"page\":\"%s\"", this.url)).append(",");
+		buffer.append(String.format("\"color\":\"%s\"", this.topColor)).append(",");
 		buffer.append("\"data\":{");
 		TemplateParam param = null;
 		for (int i = 0; i < this.templateParamList.size(); i++) {
