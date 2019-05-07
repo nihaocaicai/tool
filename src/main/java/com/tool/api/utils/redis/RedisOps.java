@@ -8,14 +8,12 @@ public class RedisOps {
 	public static void set(String key, String value) {
 		Jedis jedis = RedisUtil.getJedis();
 		jedis.set(key, value);
-		jedis.close();
 	}
 
 	//读缓存
 	public static String get(String key) {
 		Jedis jedis = RedisUtil.getJedis();
 		String value = jedis.get(key);
-		jedis.close();
 		return value;
 	}
 
@@ -23,7 +21,6 @@ public class RedisOps {
 	public static void setObject(String key, Object object) {
 		Jedis jedis = RedisUtil.getJedis();
 		jedis.set(key.getBytes(), SerializeUtil.serizlize(object));
-		jedis.close();
 	}
 
 	//读取缓存中的对象
@@ -31,7 +28,6 @@ public class RedisOps {
 		Jedis jedis = RedisUtil.getJedis();
 		byte[] bytes = jedis.get(key.getBytes());
 		System.out.println("bytes:" + bytes);
-		jedis.close();
 		if (bytes == null) {
 			return null;
 		}

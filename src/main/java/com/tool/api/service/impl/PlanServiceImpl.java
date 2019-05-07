@@ -12,7 +12,7 @@ import com.tool.api.service.PlanService;
 
 @Service
 @Transactional
-public class PlanServiceImpl implements PlanService{
+public class PlanServiceImpl implements PlanService {
 
 	@Autowired
 	PlanDao planDao;
@@ -33,17 +33,23 @@ public class PlanServiceImpl implements PlanService{
 	}
 
 	@Override
-	public void insertPlan(Plan plan){
+	public void insertPlan(Plan plan) {
 		planDao.insertPlan(plan);
 	}
 
 	@Override
-	public void updatePlan(Plan plan){
+	public void updatePlan(Plan plan) {
 		planDao.updatePlan(plan);
 	}
 
 	@Override
-	public void deletePlan(Plan plan){
+	public void batchUpdatePlan(List<Plan> plans) {
+		// TODO Auto-generated method stub
+		planDao.batchUpdatePlan(plans);
+	}
+
+	@Override
+	public void deletePlan(Plan plan) {
 		planDao.deletePlan(plan);
 	}
 }

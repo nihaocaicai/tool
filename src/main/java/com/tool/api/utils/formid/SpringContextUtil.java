@@ -1,4 +1,4 @@
-package com.tool.api.utils;
+package com.tool.api.utils.formid;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;

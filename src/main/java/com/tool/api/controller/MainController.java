@@ -153,5 +153,15 @@ public class MainController {
 //		System.out.println(arrange_id);
 		return "redirect:/user/plans/delete?plan_id="+plan_id+"&id="+id;
 	}
+	
+	// 批量修改考研计划是否完成
+	@RequestMapping(value = "/v1/user/plans/batchmodify", method = { RequestMethod.POST })
+	public String planControllerBatchModify(@RequestHeader String token, @RequestBody String user_plan_batch_modify,
+			RedirectAttributes attr) {
+		String id = RedisUtil.getJedis().get(token);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("user_plan_batch_modify", user_plan_batch_modify);
+		return "redirect:/user/plans/batchmodify";
+	}
 //planController end
 }
