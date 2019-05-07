@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.alibaba.fastjson.JSON;
 import com.tool.api.entity.Plan;
+import com.tool.api.exception.BaseException;
 import com.tool.api.service.PlanService;
 
 import static com.tool.api.utils.responseSuccess.success;
@@ -105,6 +106,39 @@ public class PlanController {
 //    	根据信息去添加相关日记
 		planService.updatePlan(new Plan(plan_id,uid,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish));
 		return JSON.toJSONString(success("POST /user/plans/modify"));
+	}
+	
+
+	/*
+	 * 批量修改考研计划是否完成
+	 */
+	@RequestMapping(value = "/user/plans/batchmodify", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String batchModify(@ModelAttribute("id") String id, @ModelAttribute("user_plan_batch_modify") String batch_modify) throws BaseException {
+		int uid = Integer.parseInt(id);
+		List<Object> listpid = JSON.parseObject(batch_modify).getJSONArray("plan_id");
+		List<Object> listfinish = JSON.parseObject(batch_modify).getJSONArray("plan_if_finish");
+		System.out.println("uid" + uid);
+		System.out.println("listpid: " + listpid);
+		System.out.println("listfinish: " + listfinish);
+		
+		List<Plan> list = new ArrayList<Plan>();
+		int sizepid = listpid.size();
+		int sizefinish = listfinish.size();
+		if(sizepid != sizefinish) {
+			throw new BaseException("error_code:1000:msg:输入参数错误");
+		}
+		else {
+			for(int i = 0; i < sizepid; i++) {
+				int pid = (int) listpid.get(i);
+				int pfinish = (int) listfinish.get(i);
+				Plan plan = new Plan(pid, uid, pfinish);
+				list.add(plan);
+			}
+			planService.batchUpdatePlan(list);
+		}
+		
+		return JSON.toJSONString(success("POST /user/plans/batchmodify"));
 	}
 
 	/*

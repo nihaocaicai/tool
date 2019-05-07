@@ -1,9 +1,6 @@
 package com.tool.api.service;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Map;
-
 import com.tool.api.entity.Plan;
 
 public interface PlanService {
@@ -16,6 +13,8 @@ public interface PlanService {
 	public void insertPlan(Plan plan);
 
 	public void updatePlan(Plan plan);
+	
+	public void batchUpdatePlan(List<Plan> plans);
 
 	public void deletePlan(Plan plan);
 

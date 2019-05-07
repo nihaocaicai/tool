@@ -2,6 +2,9 @@ package com.tool.api.dao;
 
 import java.sql.Date;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.tool.api.entity.Plan;
 
 public interface PlanDao {
@@ -29,6 +32,11 @@ public interface PlanDao {
      * 更新用户计划安排
      */
     public void updatePlan(Plan plan);
+    
+    /*
+     * 批量更新用户计划安排是否完成
+     */
+    public void batchUpdatePlan(@Param("list") List<Plan> plans);
 
     /*
      * 删除某用户的计划安排
