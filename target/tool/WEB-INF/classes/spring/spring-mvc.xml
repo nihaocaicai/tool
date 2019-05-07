@@ -30,7 +30,7 @@
         <property name="suffix" value=".jsp" />
     </bean>
     
-    <bean id="SpringContextUtil" class="com.tool.api.utils.SpringContextUtil" scope="singleton"></bean>
+    <bean id="SpringContextUtil" class="com.tool.api.utils.formid.SpringContextUtil" scope="singleton"></bean>
     
     <!-- 4.扫描web相关的bean -->
     <context:component-scan base-package="com.tool.api.controller" />

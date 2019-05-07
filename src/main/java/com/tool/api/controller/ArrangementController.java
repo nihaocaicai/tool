@@ -24,8 +24,7 @@ public class ArrangementController {
 	/*
 	 * 根据id查询用户的全部日记记录
 	 */
-	@RequestMapping(value = "/user/arrangements/all", method = {
-			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/arrangements/all", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String findUserById(String id)
 			throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
@@ -40,7 +39,7 @@ public class ArrangementController {
 	/*
 	 * 添加考研安排
 	 */
-	@RequestMapping(value = "/user/arrangements/add", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/arrangements/add",produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String addArrangement(@ModelAttribute("id") String id,
 			@ModelAttribute("user_arrangement_add") String user_arrangement_add) {
@@ -70,7 +69,7 @@ public class ArrangementController {
 	/*
 	 * 修改考研日记
 	 */
-	@RequestMapping(value = "/user/arrangements/modify", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/arrangements/modify",produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String modifyArrangement(@ModelAttribute("id") String id,
 			@ModelAttribute("user_arrangement_modify") String user_arrangement_modify) {
@@ -101,8 +100,7 @@ public class ArrangementController {
 	/*
 	 * 根据id删除考研日记
 	 */
-	@RequestMapping(value = "/user/arrangements/delete", method = {
-			RequestMethod.GET }, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/arrangements/delete", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteArrangement(@RequestParam String id, @RequestParam String arrange_id) {
 		int uid = Integer.parseInt(id);

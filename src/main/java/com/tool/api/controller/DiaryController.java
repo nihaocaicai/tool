@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import com.tool.api.entity.Diary;
 import com.tool.api.service.DiaryService;
 
-import static com.tool.api.utils.responseDataUtils.ResponseData.responseData;
 import static com.tool.api.utils.responseSuccess.success;
 
 @Controller
@@ -24,7 +23,7 @@ public class DiaryController {
     /*
     *根据id查询用户的全部日记记录
     * */ 
-    @RequestMapping(value = "/user/diarys/all", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+    @RequestMapping(value = "/user/diarys/all",  produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String findUserById(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
@@ -36,7 +35,7 @@ public class DiaryController {
 	/*
 	 * 添加考研日记
 	 */
-	@RequestMapping(value = "/user/diarys/add", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/diarys/add", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String addDiary(@ModelAttribute("id") String id,@ModelAttribute("user_diary_add") String user_diary_add) {
 //        System.out.println(id);
@@ -56,7 +55,7 @@ public class DiaryController {
 	/*
 	 * 修改考研日记
 	 */
-	@RequestMapping(value = "/user/diarys/modify", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/diarys/modify", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String modifyDiary(@ModelAttribute("id") String id,@ModelAttribute("user_diary_modify") String user_diary_modify) {
 		int uid = Integer.parseInt(id);
@@ -75,7 +74,7 @@ public class DiaryController {
 	/*
 	 *根据id删除考研日记
 	 */
-	@RequestMapping(value = "/user/diarys/delete", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/diarys/delete", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteDiary(@RequestParam String id, @RequestParam String diary_id){
 		int uid = Integer.parseInt(id);

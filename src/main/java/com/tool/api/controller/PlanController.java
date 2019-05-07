@@ -26,7 +26,7 @@ public class PlanController {
 	 *根据id查询用户的全部日记记录
 	 * 当天之前的（不包括当天）
 	 * */
-	@RequestMapping(value = "/user/plans/all/before", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/plans/all/before",  produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String planFindAllBefore(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
@@ -43,7 +43,7 @@ public class PlanController {
 	 *根据id查询用户的全部日记记录
 	 * 当天之后的（包括当天）
 	 * */
-	@RequestMapping(value = "/user/plans/all/after", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/plans/all/after",  produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String planFindAllAfter(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
@@ -59,7 +59,7 @@ public class PlanController {
 	 *根据id查询用户的全部日记记录
 	 * 当天的
 	 * */
-	@RequestMapping(value = "/user/plans/all/intraday", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/plans/all/intraday", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String planFindAllIntraday(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
@@ -74,7 +74,7 @@ public class PlanController {
 	/*
 	 * 添加考研日记
 	 */
-	@RequestMapping(value = "/user/plans/add", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/plans/add", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String addPlan(@ModelAttribute("id") String id,@ModelAttribute("user_plan_add") String user_plan_add) {
 		int uid = Integer.parseInt(id);
@@ -92,7 +92,7 @@ public class PlanController {
 	/*
 	 * 修改考研计划
 	 */
-	@RequestMapping(value = "/user/plans/modify", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/plans/modify",  produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String modifyDiary(@ModelAttribute("id") String id,@ModelAttribute("user_plan_modify") String user_plan_modify) {
 		int uid = Integer.parseInt(id);
@@ -112,7 +112,7 @@ public class PlanController {
 	/*
 	 * 批量修改考研计划是否完成
 	 */
-	@RequestMapping(value = "/user/plans/batchmodify", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/plans/batchmodify", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String batchModify(@ModelAttribute("id") String id, @ModelAttribute("user_plan_batch_modify") String batch_modify) throws BaseException {
 		int uid = Integer.parseInt(id);
@@ -144,7 +144,7 @@ public class PlanController {
 	/*
 	 *根据id删除考研计划
 	 */
-	@RequestMapping(value = "/user/plans/delete", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+	@RequestMapping(value = "/user/plans/delete", produces="application/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteDiary(@RequestParam String id, @RequestParam String plan_id){
 		int uid = Integer.parseInt(id);

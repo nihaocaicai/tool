@@ -2,7 +2,6 @@ package com.tool.api.controller;
 
 import java.sql.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tool.api.exception.BaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,7 @@ public class UserController {
     /*
      *根据id查询用户信息
      */
-    @RequestMapping(value = "/user/info/show", method = {RequestMethod.GET}, produces="application/json;charset=UTF-8")
+    @RequestMapping(value = "/user/info/show", produces="application/json;charset=UTF-8")
 	@ResponseBody
     public String findUserById(String id){
 		int uid = Integer.parseInt(id);
@@ -32,7 +31,7 @@ public class UserController {
     /*
      * 更新数据库某个用户记录
      */
-    @RequestMapping(value = "/user/info/modify", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+    @RequestMapping(value = "/user/info/modify", produces="application/json;charset=UTF-8")
     @ResponseBody
     public String updateUser(@ModelAttribute("id") String id,@ModelAttribute("user_info") String user_info) {
 //        System.out.println(id);
@@ -56,7 +55,7 @@ public class UserController {
     /*
      * 删除数据库中某个用户记录
      */
-    @RequestMapping(value = "/user/info/delete", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
+    @RequestMapping(value = "/user/info/delete", produces="application/json;charset=UTF-8")
     @ResponseBody
     public String delete(String id) throws Exception{
         int uid = Integer.parseInt(id);
