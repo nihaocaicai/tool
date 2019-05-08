@@ -1,14 +1,16 @@
 package com.tool.api.component;
 
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
 import com.alibaba.fastjson.JSON;
 import com.tool.api.utils.HttpRequest;
 import com.tool.api.utils.redis.RedisUtil;
 
 //注释关闭计时器
-//@Component
+@Component
 public class AccessTokenController {
-	@Scheduled(cron = "*/10 * * * * * ") // 间隔10秒执行
+	@Scheduled(cron = "0 0/2 * * * * ") // 间隔两分钟执行
 	public void taskCycle() throws Exception {
 		// 小程序唯一标识 (在微信小程序管理后台获取)
 		String wxspAppid = "wx1571b5d3bf600f43";
@@ -18,8 +20,8 @@ public class AccessTokenController {
 		String grant_type = "client_credential";
 		// 封装请求数据
 		String params = "grant_type=" + grant_type + "&secret=" + wxspSecret + "&appid=" + wxspAppid;
-		// 发送GET请求
-		String result = HttpRequest.sendGet("https://api.weixin.qq.com/cgi-bin/token", params);
+		// 发送POST请求
+		String result = HttpRequest.sendPost("https://api.weixin.qq.com/cgi-bin/token", params);
 		// 拿到accesstoken
 		String accesstoken = JSON.parseObject(result).getString("access_token");
 		String key = "access_token";
@@ -35,7 +37,13 @@ public class AccessTokenController {
 		 * @param time  过期时间，单位是expx所代表的单位。
 		 * @return
 		 */
-		RedisUtil.getJedis().set(key, value, "NX", "EX", 3600*2);
+		String flag = RedisUtil.getJedis().get("access_token");
+		if (flag != null) {
+			RedisUtil.getJedis().set(key, value, "XX", "EX", 3600 * 2);
+		} 
+		else {
+			RedisUtil.getJedis().set(key, value, "NX", "EX", 3600 * 2);
+		}
 		System.out.println("access_token: " + accesstoken);
 	}
 }

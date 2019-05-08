@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8d0fa6c5-07dc-42b6-8a24-70785cca37d5" name="Default Changelist" comment="" />
+    <list default="true" id="8d0fa6c5-07dc-42b6-8a24-70785cca37d5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.tool.api/tool/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.tool.api/tool/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/component/AccessTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/component/AccessTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/component/TimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/component/TimeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/ArrangementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/ArrangementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/TemplateMessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/api/service/impl/TemplateMessageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/tool/mapperClass/Template.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/tool/mapperClass/Template.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/db.properties" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="84">
+              <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -82,8 +94,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/controller/PlanController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/controller/DiaryController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/controller/ArrangementController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/tool/api/utils/redis/RedisUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
       </list>
     </option>
   </component>
@@ -356,12 +368,12 @@
       <workItem from="1557226346293" duration="2509000" />
       <workItem from="1557232141896" duration="540000" />
       <workItem from="1557234672889" duration="601000" />
-      <workItem from="1557285283065" duration="681000" />
+      <workItem from="1557285283065" duration="734000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37278000" />
+    <option name="totallyTimeSpent" value="37331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1488" height="878" extended-state="6" />
@@ -812,8 +824,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="84">
+          <caret line="3" column="18" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
         </state>
       </provider>
     </entry>

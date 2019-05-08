@@ -26,14 +26,14 @@ public class TemplateMessageServiceImpl implements TemplateMessageService{
         tem.setFormid(formid);
         System.out.println(openid+"=====================");
         //设置超链接（点击模板可跳转相应链接中）
-        tem.setUrl("你要跳转的链接");
+        tem.setUrl("pages/index/index");
         List<TemplateParam> paras=new ArrayList<TemplateParam>();//消息主体
         paras.add(new TemplateParam("first",title,"#333")); //标题 
         paras.add(new TemplateParam("keyword1",course,"#333"));//审核类型
         paras.add(new TemplateParam("keyword2",date,"#333"));//日期
         paras.add(new TemplateParam("keyword3",time,"#333"));//时间
         paras.add(new TemplateParam("keyword4",place,"#333"));//地点
-        paras.add(new TemplateParam("remark","点击此消息查看详情","#333"));  //消息详情
+        //paras.add(new TemplateParam("remark","点击此消息查看详情","#333"));  //消息详情
         tem.setTemplateParamList(paras);  
         //发送消息
         boolean result=sendTemplateMsg(access_token, tem);
@@ -43,7 +43,7 @@ public class TemplateMessageServiceImpl implements TemplateMessageService{
 
 	public static boolean sendTemplateMsg(String access_token, Template template) {
 		boolean flag=false;   
-        String requestUrl="https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
+        String requestUrl="https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=ACCESS_TOKEN";
         //传入access_token的值
         requestUrl=requestUrl.replace("ACCESS_TOKEN", access_token);  
         String jsonString = template.toJSON();//把String拼接转为json类型
@@ -53,6 +53,7 @@ public class TemplateMessageServiceImpl implements TemplateMessageService{
             int errorCode=jsonResult.getInteger("errcode");  
             String errorMessage=jsonResult.getString("errmsg");  
             if(errorCode==0){  
+            	System.out.println("模板消息发送成功：" + errorCode+ "," + errorMessage);
                 flag=true;  
             }else{  
                 System.out.println("模板消息发送失败:"+errorCode+","+errorMessage);
