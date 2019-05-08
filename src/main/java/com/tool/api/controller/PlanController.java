@@ -36,8 +36,8 @@ public class PlanController {
 //		System.out.println(date);
 		List<Plan> plan = planService.findPlanAllBefore(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
-		HashMap<String,List<Plan>> map = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
-		return JSON.toJSONString(map);
+		List<HashMap<String, Object>> list = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
+		return JSON.toJSONString(list);
 	}
 	/*
 	 *根据id查询用户的全部日记记录
@@ -52,8 +52,8 @@ public class PlanController {
 		java.sql.Date date=new Date(datetime.getTime());
 		List<Plan> plan = planService.findPlanAllAfter(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
-		HashMap<String,List<Plan>> map = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
-		return JSON.toJSONString(map);
+		List<HashMap<String, Object>> list = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
+		return JSON.toJSONString(list);
 	}
 	/*
 	 *根据id查询用户的全部日记记录
@@ -68,8 +68,8 @@ public class PlanController {
 		java.sql.Date date=new Date(datetime.getTime());
 		List<Plan> plan = planService.findPlanAllIntraday(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
-		HashMap<String,List<Plan>> map = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
-		return JSON.toJSONString(map);
+		List<HashMap<String, Object>> list = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
+		return JSON.toJSONString(list);
 	}
 	/*
 	 * 添加考研日记

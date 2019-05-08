@@ -31,9 +31,9 @@ public class ArrangementController {
 		int uid = Integer.parseInt(id);
 		List<Arrangement> arrangement = arrangementService.findArrangeByUserId(uid);
 //		加入转换的数据，类中所在的日期方法名,类的对象
-		HashMap<String, List<Arrangement>> map = ResponseData.<Arrangement>responseData(arrangement, "getArrange_date",
+		List<HashMap<String, Object>> list = ResponseData.<Arrangement>responseData(arrangement, "getArrange_date",
 				new Arrangement());
-		return JSON.toJSONString(map);
+		return JSON.toJSONString(list);
 	}
 
 	/*

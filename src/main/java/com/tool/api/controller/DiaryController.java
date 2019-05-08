@@ -29,8 +29,8 @@ public class DiaryController {
 		int uid = Integer.parseInt(id);
 		List<Diary> diary = diaryService.findDiaryById(uid);
 //		加入转换的数据，类中所在的日期方法名,类的对象
-		HashMap<String,List<Diary>> map = ResponseData.<Diary>responseData(diary,"getDiary_write_date",new Diary());
-		return JSON.toJSONString(map);
+		List<HashMap<String, Object>> list = ResponseData.<Diary>responseData(diary,"getDiary_write_date",new Diary());
+		return JSON.toJSONString(list);
 	}
 	/*
 	 * 添加考研日记
