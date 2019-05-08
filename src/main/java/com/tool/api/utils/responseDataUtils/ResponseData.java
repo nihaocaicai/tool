@@ -9,13 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ResponseData {
-    public static <T> HashMap<String,List<T>> responseData(List<T> valuesBefore,String method,Object obj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
+    public static <T> List<HashMap<String, Object>> responseData(List<T> valuesBefore,String method,Object obj) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
 
         //获取查出来的数据List<T>
         List<T> valueBefore = valuesBefore;
         //传过来的数据是对日期进行排序了的
-        HashMap<String,List<T>> map=new HashMap<>();
+        HashMap<String, Object> map=new HashMap<>();
         List<T> pList = new ArrayList<>();
+        List<HashMap<String, Object>> returnList = new ArrayList<>();
 
 //        反射，根据对象得到类名
         String className = obj.getClass().getName();
@@ -29,25 +30,27 @@ public class ResponseData {
 //            System.out.println(d);
             if(date.equals(d)||date.equals(Date.valueOf("1998-02-01"))) {
                 pList.add(p);
-                if(size==0){
-                    map.put(d.toString(),pList);
-                }
+//                if(size == 0) {
+//                	map.put("date", date.toString());
+//                	map.put("data", pList);
+//                	returnList.add(map);
+//                }
             }else {
-                map.put(date.toString(),pList);
-//                System.out.println(pList.size());
+            	map.put("date", date.toString());
+                map.put("data", pList);
+                returnList.add(map);
+                map = new HashMap<>();
                 pList = new ArrayList<>();
                 pList.add(p);
-                //判断最后一个日期是否只有一个，如果只有一个，不执行下面的操作，不然date会重复，下一个会覆盖上一个
-                if(size==0&&date.equals(d)){
-                    map.put(date.toString(),pList);
-                }
             }
             date=d;
         }
         //把最后一个日期只有一个数据的加到map中
         if(pList.size()!=0){
-            map.put(date.toString(),pList);
+        	map.put("date", date.toString());
+            map.put("data", pList);
+            returnList.add(map);
         }
-        return map;
+        return returnList;
     }
 }
