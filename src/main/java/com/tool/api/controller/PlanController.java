@@ -5,6 +5,8 @@ import java.sql.Date;
 import java.util.*;
 
 import com.tool.api.utils.responseDataUtils.ResponseData;
+import com.tool.api.utils.responseDataUtils.ResponsePlanData;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +38,8 @@ public class PlanController {
 //		System.out.println(date);
 		List<Plan> plan = planService.findPlanAllBefore(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
-		List<HashMap<String, Object>> list = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
+		List<HashMap<String, Object>> list = ResponsePlanData.<Plan>responseData(plan,"getPlan_date",new Plan());
+		System.out.println(list);
 		return JSON.toJSONString(list);
 	}
 	/*
@@ -114,7 +117,7 @@ public class PlanController {
 	 */
 	@RequestMapping(value = "/user/plans/batchmodify", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String batchModify(@ModelAttribute("id") String id, @ModelAttribute("user_plan_batch_modify") String batch_modify) throws BaseException {
+	public String batchModify(@ModelAttribute("id") String id, @ModelAttribute("user_plan_batch_modify") String batch_modify) throws Exception {
 		int uid = Integer.parseInt(id);
 		List<Object> listpid = JSON.parseObject(batch_modify).getJSONArray("plan_id");
 		List<Object> listfinish = JSON.parseObject(batch_modify).getJSONArray("plan_if_finish");
@@ -146,11 +149,17 @@ public class PlanController {
 	 */
 	@RequestMapping(value = "/user/plans/delete", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String deleteDiary(@RequestParam String id, @RequestParam String plan_id){
+	public String deleteDiary(@RequestParam String id, @RequestParam String plan_id) throws Exception{
 		int uid = Integer.parseInt(id);
 		int pid = Integer.parseInt(plan_id);
 //    	根据信息去删除相关日记
-		planService.deletePlan(new Plan(pid,uid));
+		int if_exist = planService.findPlanIdIfExist(pid);
+		if(if_exist != 0) {
+			planService.deletePlan(new Plan(pid,uid));
+		}
+		else {
+			throw new BaseException("error_code:3000:msg:该用户在数据库中不存在");
+		}
 		return JSON.toJSONString(success("GET /user/plans/delete"));
 	}
 }

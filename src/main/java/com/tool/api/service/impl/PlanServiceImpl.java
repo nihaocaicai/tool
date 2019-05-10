@@ -16,6 +16,12 @@ public class PlanServiceImpl implements PlanService {
 
 	@Autowired
 	PlanDao planDao;
+	
+	@Override
+	public int findPlanIdIfExist(int plan_id) {
+		// TODO Auto-generated method stub
+		return planDao.findPlanIdIfExist(plan_id);
+	}
 
 	@Override
 	public List<Plan> findPlanAllBefore(Plan plan) {

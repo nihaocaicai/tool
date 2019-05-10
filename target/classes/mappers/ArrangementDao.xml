@@ -7,7 +7,7 @@
 		resultType="com.tool.api.entity.Arrangement">
 		select arrange_id,arrange_content,arrange_place,arrange_date,arrange_time,arrange_if_prompt,
 		arrange_if_prompt_date,arrange_if_prompt_time
-		from arrangement where user_id=#{user_id} order by arrange_date asc
+		from arrangement where user_id=#{user_id} order by arrange_date desc
 	</select>
 	<!-- 插入一条用户考试安排 -->
 	<insert id="insertArrange" parameterType="com.tool.api.entity.Arrangement">
