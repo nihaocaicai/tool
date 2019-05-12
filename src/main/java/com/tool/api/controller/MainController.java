@@ -125,22 +125,31 @@ public class MainController {
 
 	// 获取用户全部计划信息（当天之前的，不包括当天）
 	@RequestMapping(value = "/v1/user/plans/all/before", method = { RequestMethod.GET })
-	public String planControllerFindAllBefore(@RequestHeader String token) {
+	public String planControllerFindAllBefore(@RequestHeader String token, @RequestParam String page, RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
-		return "redirect:/user/plans/all/before?id=" + id;
+		int pageSize = Integer.parseInt(page);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("pageSize", pageSize);
+		return "redirect:/user/plans/all/before";
 	}
 
 	// 获取用户全部计划信息（当天之后的，包括当天）
 	@RequestMapping(value = "/v1/user/plans/all/after", method = { RequestMethod.GET })
-	public String planControllerFindAllAfter(@RequestHeader String token) {
+	public String planControllerFindAllAfter(@RequestHeader String token, @RequestParam String page, RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
-		return "redirect:/user/plans/all/after?id=" + id;
+		int pageSize = Integer.parseInt(page);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("pageSize", pageSize);
+		return "redirect:/user/plans/all/after";
 	}
 
 	// 获取用户全部计划信息（当天）
 	@RequestMapping(value = "/v1/user/plans/all/intraday", method = { RequestMethod.GET })
-	public String planControllerFindAllIntraday(@RequestHeader String token) {
+	public String planControllerFindAllIntraday(@RequestHeader String token, @RequestParam String page, RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
+		int pageSize = Integer.parseInt(page);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("pageSize", pageSize);
 		return "redirect:/user/plans/all/intraday?id=" + id;
 	}
 

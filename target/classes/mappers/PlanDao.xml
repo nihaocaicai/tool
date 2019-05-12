@@ -23,7 +23,7 @@
 		resultType="com.tool.api.entity.Plan">
 		select
 		plan_id,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish
-		from plan where user_id=#{user_id} and plan_date &gt; #{plan_date} order
+		from plan where user_id=#{user_id} and plan_date &gt;= #{plan_date} order
 		by plan_date desc
 	</select>
 

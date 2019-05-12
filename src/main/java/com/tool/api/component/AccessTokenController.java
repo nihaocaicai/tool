@@ -10,7 +10,7 @@ import com.tool.api.utils.redis.RedisUtil;
 //注释关闭计时器
 //@Component
 public class AccessTokenController {
-	@Scheduled(cron = "0 0/2 * * * * ") // 间隔两分钟执行
+	@Scheduled(cron = "0 50 0/2 * * * ") // 从五十分开始，间隔两小时执行一次
 	public void taskCycle() throws Exception {
 		// 小程序唯一标识 (在微信小程序管理后台获取)
 		String wxspAppid = "wx1571b5d3bf600f43";

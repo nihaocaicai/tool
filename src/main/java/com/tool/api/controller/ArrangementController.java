@@ -6,6 +6,7 @@ import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
 import com.tool.api.utils.formid.FormidCache;
 import com.tool.api.utils.responseDataUtils.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +55,9 @@ public class ArrangementController {
 		int arrange_if_prompt = JSON.parseObject(user_arrangement_add).getInteger("arrange_if_prompt");
 		Date arrange_if_prompt_date = Date
 				.valueOf(JSON.parseObject(user_arrangement_add).getString("arrange_if_prompt_date"));
-		Time arrange_if_prompt_time = Time
-				.valueOf(JSON.parseObject(user_arrangement_add).getString("arrange_if_prompt_time"));
+		
+		//bug 得后台改数据库字段成string
+		String arrange_if_prompt_time = JSON.parseObject(user_arrangement_add).getString("arrange_if_prompt_time");
 //    	根据信息去添加相关安排
 		arrangementService.insertArrange(new Arrangement(uid, arrange_content, arrange_place, arrange_date,
 				arrange_time, arrange_if_prompt, arrange_if_prompt_date, arrange_if_prompt_time));
@@ -85,8 +87,7 @@ public class ArrangementController {
 		int arrange_if_prompt = JSON.parseObject(user_arrangement_modify).getInteger("arrange_if_prompt");
 		Date arrange_if_prompt_date = Date
 				.valueOf(JSON.parseObject(user_arrangement_modify).getString("arrange_if_prompt_date"));
-		Time arrange_if_prompt_time = Time
-				.valueOf(JSON.parseObject(user_arrangement_modify).getString("arrange_if_prompt_time"));
+		String arrange_if_prompt_time = JSON.parseObject(user_arrangement_modify).getString("arrange_if_prompt_time");
 //    	根据信息去更新相关安排
 		arrangementService.updateArrange(new Arrangement(arrange_id, uid, arrange_content, arrange_place, arrange_date,
 				arrange_time, arrange_if_prompt, arrange_if_prompt_date, arrange_if_prompt_time));

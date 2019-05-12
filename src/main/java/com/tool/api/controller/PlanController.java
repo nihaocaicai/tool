@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
 import com.tool.api.entity.Plan;
 import com.tool.api.exception.BaseException;
 import com.tool.api.service.PlanService;
@@ -30,16 +31,16 @@ public class PlanController {
 	 * */
 	@RequestMapping(value = "/user/plans/all/before",  produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String planFindAllBefore(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+	public String planFindAllBefore(@ModelAttribute("id") String id, @ModelAttribute("pageSize") int pageSize) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
 //		获取当前系统的日期
 		java.util.Date datetime=new java.util.Date();
 		java.sql.Date date=new Date(datetime.getTime());
-//		System.out.println(date);
+		//分页返回数据，currentPage为返回页数下标，pageSize为返回页数条数
+		PageHelper.startPage(1, pageSize*10);
 		List<Plan> plan = planService.findPlanAllBefore(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
 		List<HashMap<String, Object>> list = ResponsePlanData.<Plan>responseData(plan,"getPlan_date",new Plan());
-		System.out.println(list);
 		return JSON.toJSONString(list);
 	}
 	/*
@@ -48,11 +49,13 @@ public class PlanController {
 	 * */
 	@RequestMapping(value = "/user/plans/all/after",  produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String planFindAllAfter(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+	public String planFindAllAfter(@ModelAttribute("id") String id, @ModelAttribute("pageSize") int pageSize) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
 //		获取当前系统的日期
 		java.util.Date datetime=new java.util.Date();
 		java.sql.Date date=new Date(datetime.getTime());
+		//分页返回数据，currentPage为返回页数下标，pageSize为返回页数条数
+		PageHelper.startPage(1, pageSize*10);
 		List<Plan> plan = planService.findPlanAllAfter(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
 		List<HashMap<String, Object>> list = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
@@ -64,15 +67,19 @@ public class PlanController {
 	 * */
 	@RequestMapping(value = "/user/plans/all/intraday", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String planFindAllIntraday(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+	public String planFindAllIntraday(@ModelAttribute("id") String id, @ModelAttribute("pageSize") int pageSize) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
 //		获取当前系统的日期
 		java.util.Date datetime=new java.util.Date();
 		java.sql.Date date=new Date(datetime.getTime());
+		//分页返回数据，currentPage为返回页数下标，pageSize为返回页数条数
+		PageHelper.startPage(1, pageSize*10);
 		List<Plan> plan = planService.findPlanAllIntraday(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
 		List<HashMap<String, Object>> list = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());
-		return JSON.toJSONString(list);
+		String str = JSON.toJSONString(list);
+		str = str.substring(1, str.length() -1);
+		return str;
 	}
 	/*
 	 * 添加考研日记
@@ -86,7 +93,7 @@ public class PlanController {
 		String plan_start_time = JSON.parseObject(user_plan_add).getString("plan_start_time");
 		String plan_end_time = JSON.parseObject(user_plan_add).getString("plan_end_time");
 		int plan_if_repeat = JSON.parseObject(user_plan_add).getInteger("plan_if_repeat");
-		int plan_if_finish = JSON.parseObject(user_plan_add).getInteger("plan_if_finsh");
+		int plan_if_finish = JSON.parseObject(user_plan_add).getInteger("plan_if_finish");
 //    	根据信息去添加相关计划
 		planService.insertPlan(new Plan(uid,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish));
 		return JSON.toJSONString(success("POST /user/plans/add"));
@@ -156,8 +163,7 @@ public class PlanController {
 		int if_exist = planService.findPlanIdIfExist(pid);
 		if(if_exist != 0) {
 			planService.deletePlan(new Plan(pid,uid));
-		}
-		else {
+		} else {
 			throw new BaseException("error_code:3000:msg:该用户在数据库中不存在");
 		}
 		return JSON.toJSONString(success("GET /user/plans/delete"));

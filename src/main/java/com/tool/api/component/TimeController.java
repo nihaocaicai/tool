@@ -23,7 +23,7 @@ public class TimeController {
 	@Autowired
 	private TemplateMessageService templateMessageService;
 
-	@Scheduled(cron = "10 0/1 * * * * ") // 从第十秒开始，间隔一分钟执行
+	@Scheduled(cron = "0 0 0/1 * * * ") // 每一小时执行一次
 	public void taskCycle() throws Exception {
 		// 当前时间
 		Date nowdate = new Date();
