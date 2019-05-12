@@ -1,7 +1,5 @@
 package com.tool.api.utils.responseDataUtils;
 
-import com.tool.api.entity.Diary;
-
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.util.ArrayList;

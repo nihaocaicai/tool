@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tool.api.dao.TimeDao">
-	<select id = "findUid" parameterType="String" resultType="com.tool.api.entity.Arrangement">
-		select * from arrangement where arrange_if_prompt = 1 and arrange_if_prompt_date = #{date} and arrange_if_prompt_time like '${hour}%' 
-	</select>
-</mapper>
