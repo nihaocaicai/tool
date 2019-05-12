@@ -8,7 +8,7 @@ import com.tool.api.utils.HttpRequest;
 import com.tool.api.utils.redis.RedisUtil;
 
 //注释关闭计时器
-//@Component
+@Component
 public class AccessTokenController {
 	@Scheduled(cron = "0 50 0/2 * * * ") // 从五十分开始，间隔两小时执行一次
 	public void taskCycle() throws Exception {
