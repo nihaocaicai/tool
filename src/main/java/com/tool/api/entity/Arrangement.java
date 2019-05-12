@@ -16,8 +16,7 @@ public class Arrangement {
 	private int arrange_if_prompt;		//是否打开微信提示考试时间
 	@JSONField(format="yyyy-MM-dd")
 	private Date arrange_if_prompt_date;//提示日期
-	@JSONField(format="HH:mm:ss")
-	private Time arrange_if_prompt_time;//提示时间
+	private String arrange_if_prompt_time;//提示时间
 	private int right=0;
 	
 	public Arrangement() {
@@ -25,7 +24,7 @@ public class Arrangement {
 	}
 
 	public Arrangement(int user_id,String arrange_content,String arrange_place,Date arrange_date,String arrange_time,
-					   int arrange_if_prompt,Date arrange_if_prompt_date,Time arrange_if_prompt_time) {
+					   int arrange_if_prompt,Date arrange_if_prompt_date,String arrange_if_prompt_time) {
 		super();
 		this.user_id=user_id;
 		this.arrange_content=arrange_content;
@@ -38,7 +37,7 @@ public class Arrangement {
 	}
 
 	public Arrangement(int arrange_id,int user_id,String arrange_content,String arrange_place,Date arrange_date,String arrange_time,
-					   int arrange_if_prompt,Date arrange_if_prompt_date,Time arrange_if_prompt_time) {
+					   int arrange_if_prompt,Date arrange_if_prompt_date,String arrange_if_prompt_time) {
 		super();
 		this.arrange_id=arrange_id;
 		this.user_id=user_id;
@@ -121,11 +120,11 @@ public class Arrangement {
 		this.arrange_if_prompt_date = arrange_if_prompt_date;
 	}
 
-	public Time getArrange_if_prompt_time() {
+	public String getArrange_if_prompt_time() {
 		return arrange_if_prompt_time;
 	}
 
-	public void setArrange_if_prompt_time(Time arrange_if_prompt_time) {
+	public void setArrange_if_prompt_time(String arrange_if_prompt_time) {
 		this.arrange_if_prompt_time = arrange_if_prompt_time;
 	}
 

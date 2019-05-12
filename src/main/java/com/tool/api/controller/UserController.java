@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.tool.api.entity.User;
 import com.tool.api.service.UserService;
 
@@ -41,7 +42,9 @@ public class UserController {
         String user_avatar = JSON.parseObject(user_info).getString("user_avatar");
         Integer user_gender = JSON.parseObject(user_info).getInteger("user_gender");
         String user_city = JSON.parseObject(user_info).getString("user_city");
-        Date user_birthday = Date.valueOf(JSON.parseObject(user_info).getString("user_birthday"));
+        JSONObject object = JSON.parseObject(user_info);
+        String birthday = object.getString("user_birthday");
+        Date user_birthday = Date.valueOf(birthday);
         String user_target = JSON.parseObject(user_info).getString("user_target");
         String user_motto = JSON.parseObject(user_info).getString("user_motto");
         Date user_exam_date = Date.valueOf(JSON.parseObject(user_info).getString("user_exam_date"));
@@ -61,7 +64,6 @@ public class UserController {
         int uid = Integer.parseInt(id);
         //查找数据库是否有id
         int if_exit = userService.findUserByIdIf(uid);
-        System.out.println(if_exit);
         if (if_exit!=0){
             //查询数据库有，删除
             userService.deleteUser(uid);

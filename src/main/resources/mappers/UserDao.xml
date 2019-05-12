@@ -52,9 +52,12 @@
         select count(*) from user where id=#{id}
     </select>
 
-    <!--删除某个用户信息-->
+    <!--删除某个用户信息，包括其他关联表中的数据-->
     <delete id="deleteUser" parameterType="int">
-        delete from user where id=#{id}
+        delete from user where id=#{id};
+        delete from arrangement where user_id = #{id};
+        delete from plan where user_id = #{id};
+        delete from diary where user_id = #{id};
     </delete>
 
 </mapper>
