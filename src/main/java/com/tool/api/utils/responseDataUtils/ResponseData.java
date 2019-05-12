@@ -28,11 +28,6 @@ public class ResponseData {
 //            System.out.println(d);
             if(date.equals(d)||date.equals(Date.valueOf("1998-02-01"))) {
                 pList.add(p);
-//                if(size == 0) {
-//                	map.put("date", date.toString());
-//                	map.put("data", pList);
-//                	returnList.add(map);
-//                }
             }else {
             	map.put("date", date.toString());
                 map.put("data", pList);

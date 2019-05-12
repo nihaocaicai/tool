@@ -15,7 +15,7 @@ import com.tool.mapperClass.FormId;
 import com.tool.mapperClass.OpenIdAndFormId;
 
 //注释关闭定时器
-@Component
+//@Component
 public class TimeController {
 
 	@Autowired

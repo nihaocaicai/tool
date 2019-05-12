@@ -4,6 +4,9 @@ import java.util.List;
 import com.tool.api.entity.Plan;
 
 public interface PlanService {
+	
+	public int findPlanIdIfExist(int plan_id);
+	
 	public List<Plan> findPlanAllBefore(Plan plan);
 
 	public List<Plan> findPlanAllAfter(Plan plan);

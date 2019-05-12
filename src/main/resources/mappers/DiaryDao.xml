@@ -16,7 +16,7 @@
 		resultType="com.tool.api.entity.Diary">
 		select diary_write_date,diary_id,diary_title,diary_content,diary_write_time,diary_write_place
 		from diary
-		where user_id=#{id} order by diary_write_date asc
+		where user_id=#{id} order by diary_write_date desc
 	</select>
 	<!-- 插入一条用户日记记录 -->
 	<insert id="insertDiary" parameterType="com.tool.api.entity.Diary">

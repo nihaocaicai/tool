@@ -8,6 +8,12 @@ import org.apache.ibatis.annotations.Param;
 import com.tool.api.entity.Plan;
 
 public interface PlanDao {
+	
+	/*
+	 * 根据pid查看数据库是否存在该条数据
+	 */
+	public int findPlanIdIfExist(int plan_id);
+	
     /*
      * 根据id和时间date查询用户该日期前所有计划安排信息
      */
