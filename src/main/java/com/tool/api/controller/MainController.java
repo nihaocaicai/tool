@@ -85,9 +85,12 @@ public class MainController {
 //arrangementController start
 	// 获取用户全部安排信息
 	@RequestMapping(value = "/v1/user/arrangements/all", method = { RequestMethod.GET })
-	public String arrangementControllerFindAll(@RequestHeader String token) {
+	public String arrangementControllerFindAll(@RequestHeader String token, @RequestParam String page, RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
-		return "redirect:/user/arrangements/all?id=" + id;
+		int pageSize = Integer.parseInt(page);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("pageSize", pageSize);
+		return "redirect:/user/arrangements/all";
 	}
 
 	// 添加考研安排
@@ -145,12 +148,10 @@ public class MainController {
 
 	// 获取用户全部计划信息（当天）
 	@RequestMapping(value = "/v1/user/plans/all/intraday", method = { RequestMethod.GET })
-	public String planControllerFindAllIntraday(@RequestHeader String token, @RequestParam String page, RedirectAttributes attr) {
+	public String planControllerFindAllIntraday(@RequestHeader String token, RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
-		int pageSize = Integer.parseInt(page);
 		attr.addFlashAttribute("id", id);
-		attr.addFlashAttribute("pageSize", pageSize);
-		return "redirect:/user/plans/all/intraday?id=" + id;
+		return "redirect:/user/plans/all/intraday";
 	}
 
 	// 添加考研计划

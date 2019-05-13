@@ -67,13 +67,11 @@ public class PlanController {
 	 * */
 	@RequestMapping(value = "/user/plans/all/intraday", produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String planFindAllIntraday(@ModelAttribute("id") String id, @ModelAttribute("pageSize") int pageSize) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+	public String planFindAllIntraday(@ModelAttribute("id") String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
 //		获取当前系统的日期
 		java.util.Date datetime=new java.util.Date();
 		java.sql.Date date=new Date(datetime.getTime());
-		//分页返回数据，currentPage为返回页数下标，pageSize为返回页数条数
-		PageHelper.startPage(1, pageSize*10);
 		List<Plan> plan = planService.findPlanAllIntraday(new Plan(uid,date));
 //		加入转换的数据，类中所在的日期方法名,类的对象
 		List<HashMap<String, Object>> list = ResponseData.<Plan>responseData(plan,"getPlan_date",new Plan());

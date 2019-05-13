@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.swing.table.TableModel;
+
 import com.tool.mapperClass.PlanMapper;
 
 public class ResponsePlanData {
@@ -14,6 +16,7 @@ public class ResponsePlanData {
 			throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, ClassNotFoundException {
 		//获取查出来的数据List<T>
         List<T> valueBefore = valuesBefore;
+        System.out.println("valueBefore:" + valueBefore.size());
         //传过来的数据是对日期进行排序了的
         HashMap<String, Object> datemap = new HashMap<>();
         HashMap<String, Object> daymap = new HashMap<>();
@@ -46,7 +49,6 @@ public class ResponsePlanData {
           if(date.equals(formatDate)||date.equals("1998-02")) {
         	  String formatday = EnglishDayFormat.format(d);
         	  if(day.equals(formatday) || day.equals("32")) {
-        		 System.out.println(formatday);
                 String start = (String) Class.forName(className).getMethod("getPlan_start_time").invoke(p);
                 String end = (String) Class.forName(className).getMethod("getPlan_end_time").invoke(p);
                 String time = "";
@@ -74,13 +76,12 @@ public class ResponsePlanData {
                   time += start;
                   time += "-";
                   time += end;
-                  System.out.println(time);
                   String content = (String) Class.forName(className).getMethod("getPlan_content").invoke(p);
                   T planMapper = (T) new PlanMapper(time, content);
                   dayList.add(planMapper);
         	  }
           }else {
-        	  System.out.println(tempdate);
+        	  System.out.println("tempdate2:"+tempdate);
         	  String DayAndWeek = "";
     		  DayAndWeek += ChinaDayFormat.format(tempdate);
     		  DayAndWeek += " ";
@@ -111,8 +112,6 @@ public class ResponsePlanData {
           tempdate = d;
       }
       //把最后一个日期只有一个数据的加到map中
-      if(dateList.size()!=0){
-    	  System.out.println(tempdate);
     	  String DayAndWeek = "";
 		  DayAndWeek += ChinaDayFormat.format(tempdate);
 		  DayAndWeek += " ";
@@ -123,7 +122,6 @@ public class ResponsePlanData {
       	  datemap.put("date", ChinaFormat.format(tempdate));
           datemap.put("data", dateList);
           returnList.add(datemap);
-      }
         
         return returnList;
 	}

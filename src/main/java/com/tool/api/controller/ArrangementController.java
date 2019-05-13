@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.tool.api.entity.Arrangement;
+import com.tool.api.exception.BaseException;
 import com.tool.api.service.ArrangementService;
 
 import static com.tool.api.utils.responseSuccess.success;
@@ -27,9 +28,11 @@ public class ArrangementController {
 	 */
 	@RequestMapping(value = "/user/arrangements/all", produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String findUserById(String id)
+	public String findUserById(@ModelAttribute("id") String id,
+			@ModelAttribute("pageSize") int pageSize)
 			throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
 		int uid = Integer.parseInt(id);
+		PageHelper.startPage(1, pageSize*10);
 		List<Arrangement> arrangement = arrangementService.findArrangeByUserId(uid);
 //		加入转换的数据，类中所在的日期方法名,类的对象
 		List<HashMap<String, Object>> list = ResponseData.<Arrangement>responseData(arrangement, "getArrange_date",
@@ -43,7 +46,7 @@ public class ArrangementController {
 	@RequestMapping(value = "/user/arrangements/add",produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String addArrangement(@ModelAttribute("id") String id,
-			@ModelAttribute("user_arrangement_add") String user_arrangement_add) {
+			@ModelAttribute("user_arrangement_add") String user_arrangement_add) throws BaseException {
 		int uid = Integer.parseInt(id);
 //        这里获取formid
 		String arrange_form_id = JSON.parseObject(user_arrangement_add).getString("arrange_form_id");
@@ -53,10 +56,10 @@ public class ArrangementController {
 		Date arrange_date = Date.valueOf(JSON.parseObject(user_arrangement_add).getString("arrange_date"));
 		String arrange_time = JSON.parseObject(user_arrangement_add).getString("arrange_time");
 		int arrange_if_prompt = JSON.parseObject(user_arrangement_add).getInteger("arrange_if_prompt");
-		Date arrange_if_prompt_date = Date
-				.valueOf(JSON.parseObject(user_arrangement_add).getString("arrange_if_prompt_date"));
-		
-		//bug 得后台改数据库字段成string
+		Date arrange_if_prompt_date = null;
+		if(JSON.parseObject(user_arrangement_add).getString("arrange_if_prompt_date") != null) {
+			arrange_if_prompt_date = Date.valueOf(JSON.parseObject(user_arrangement_add).getString("arrange_if_prompt_date"));
+		}
 		String arrange_if_prompt_time = JSON.parseObject(user_arrangement_add).getString("arrange_if_prompt_time");
 //    	根据信息去添加相关安排
 		arrangementService.insertArrange(new Arrangement(uid, arrange_content, arrange_place, arrange_date,
@@ -85,8 +88,10 @@ public class ArrangementController {
 		Date arrange_date = Date.valueOf(JSON.parseObject(user_arrangement_modify).getString("arrange_date"));
 		String arrange_time = JSON.parseObject(user_arrangement_modify).getString("arrange_time");
 		int arrange_if_prompt = JSON.parseObject(user_arrangement_modify).getInteger("arrange_if_prompt");
-		Date arrange_if_prompt_date = Date
-				.valueOf(JSON.parseObject(user_arrangement_modify).getString("arrange_if_prompt_date"));
+		Date arrange_if_prompt_date = null;
+		if(JSON.parseObject(user_arrangement_modify).getString("arrange_if_prompt_date") != null) {
+			arrange_if_prompt_date = Date.valueOf(JSON.parseObject(user_arrangement_modify).getString("arrange_if_prompt_date"));
+		}
 		String arrange_if_prompt_time = JSON.parseObject(user_arrangement_modify).getString("arrange_if_prompt_time");
 //    	根据信息去更新相关安排
 		arrangementService.updateArrange(new Arrangement(arrange_id, uid, arrange_content, arrange_place, arrange_date,
