@@ -59,7 +59,7 @@
 	<update id="batchUpdatePlan" parameterType="java.util.List">
 		<foreach collection="list" item="item" index="index" open=""
 			close="" separator=";">
-			update Plan
+			update plan
 			<set>
 				plan_if_finish = #{item.plan_if_finish}
 			</set>
