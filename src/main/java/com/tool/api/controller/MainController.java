@@ -151,7 +151,7 @@ public class MainController {
 	public String planControllerFindAllIntraday(@RequestHeader String token, RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
 		attr.addFlashAttribute("id", id);
-		return "redirect:/user/plans/all/intraday?id=" + id;
+		return "redirect:/user/plans/all/intraday";
 	}
 
 	// 添加考研计划
