@@ -112,6 +112,7 @@ public class ResponsePlanData {
           tempdate = d;
       }
       //把最后一个日期只有一个数据的加到map中
+      if(dayList.size() != 0) {
     	  String DayAndWeek = "";
 		  DayAndWeek += ChinaDayFormat.format(tempdate);
 		  DayAndWeek += " ";
@@ -122,7 +123,7 @@ public class ResponsePlanData {
       	  datemap.put("date", ChinaFormat.format(tempdate));
           datemap.put("data", dateList);
           returnList.add(datemap);
-        
+      }
         return returnList;
 	}
 }
