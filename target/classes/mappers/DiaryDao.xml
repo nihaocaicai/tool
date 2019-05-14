@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tool.api.dao.DiaryDao">
+	<resultMap id="diaryMap" type="com.tool.api.entity.Diary">
+		<id property="diary_id" column="diary_id"/> <!--id-->
+		<result property="user_id" column="user_id"/>
+		<result property="diary_title" column="diary_title"/>
+		<result property="diary_content" column="diary_content"/>
+		<result property="diary_write_date" column="diary_write_date"/>
+		<result property="diary_write_time" column="diary_write_time"/>
+		<result property="diary_write_place " column="diary_write_place "/>
+	</resultMap>
+	<!--根据id查询用户全部日记信息-->
+	<select id="findDiaryById" parameterType="int"
+		resultType="com.tool.api.entity.Diary">
+		select diary_write_date,diary_id,diary_title,diary_content,diary_write_time,diary_write_place
+		from diary
+		where user_id=#{id} order by diary_write_date desc
+	</select>
+	<!-- 插入一条用户日记记录 -->
+	<insert id="insertDiary" parameterType="com.tool.api.entity.Diary">
+		insert into diary(user_id,diary_title, diary_content, diary_write_date,diary_write_time,diary_write_place)
+		values (#{user_id},#{diary_title}, #{diary_content},#{diary_write_date}, #{diary_write_time}, #{diary_write_place})
+	</insert>
+	<!-- 更新某用户某时间段日记记录 -->
+	<update id = "updateDiary" parameterType = "com.tool.api.entity.Diary">
+    	update diary
+    		set diary.diary_title = #{diary_title}, diary.diary_content = #{diary_content},diary_write_date = #{diary_write_date},diary_write_time = #{diary_write_time},diary_write_place = #{diary_write_place}
+    			where user_id = #{user_id} and diary_id = #{diary_id}
+    </update>
+	<!-- 删除某用户一条日记记录 -->
+	<delete id="deleteDiary" parameterType="com.tool.api.entity.Diary">
+		delete from diary where user_id = #{user_id} and diary_id = #{diary_id}
+	</delete>
+
+	<!--&lt;!&ndash; 根据id和时间来获取某用户某时间段的日记记录 &ndash;&gt;-->
+	<!--<select id = "findDiaryByDiaryId" parameterType = "String" resultType = "com.tool.api.entity.Diary">-->
+    	<!--select * from Diary where diary_id = #{diary_id}-->
+    <!--</select>-->
+
+	<!---->
+
+</mapper>
