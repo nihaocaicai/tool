@@ -24,7 +24,7 @@
 		select
 		plan_id,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish
 		from plan where user_id=#{user_id} and plan_date &gt;= #{plan_date} order
-		by plan_date desc
+		by plan_date asc
 	</select>
 
 	<!--根据id和时间date查询用户当天计划信息 -->

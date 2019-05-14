@@ -51,12 +51,15 @@ public class ResponsePlanData {
         	  if(day.equals(formatday) || day.equals("32")) {
                 String start = (String) Class.forName(className).getMethod("getPlan_start_time").invoke(p);
                 String end = (String) Class.forName(className).getMethod("getPlan_end_time").invoke(p);
+                int finish = (int) Class.forName(className).getMethod("getPlan_if_finish").invoke(p);
                 String time = "";
                 time += start;
-                time += "-";
-                time += end;
+                if(end != "") {
+                	time += "-";
+                	time += end;
+                }
                 String content = (String) Class.forName(className).getMethod("getPlan_content").invoke(p);
-                T planMapper = (T) new PlanMapper(time, content);
+                T planMapper = (T) new PlanMapper(time, content, finish);
                 dayList.add(planMapper);
         	  }
         	  else {
@@ -64,7 +67,6 @@ public class ResponsePlanData {
         		  DayAndWeek += ChinaDayFormat.format(tempdate);
         		  DayAndWeek += " ";
         		  DayAndWeek += weekFormat.format(tempdate);
-        		  System.out.println(DayAndWeek);
         		  daymap.put("day", DayAndWeek);
         		  daymap.put("plan", dayList);
         		  dateList.add((T) daymap);
@@ -72,16 +74,18 @@ public class ResponsePlanData {
         		  dayList = new ArrayList<>();
         		  String start = (String) Class.forName(className).getMethod("getPlan_start_time").invoke(p);
                   String end = (String) Class.forName(className).getMethod("getPlan_end_time").invoke(p);
+                  int finish = (int) Class.forName(className).getMethod("getPlan_if_finish").invoke(p);
                   String time = "";
                   time += start;
-                  time += "-";
-                  time += end;
+                  if(end != "") {
+                  	time += "-";
+                  	time += end;
+                  }
                   String content = (String) Class.forName(className).getMethod("getPlan_content").invoke(p);
-                  T planMapper = (T) new PlanMapper(time, content);
+                  T planMapper = (T) new PlanMapper(time, content, finish);
                   dayList.add(planMapper);
         	  }
           }else {
-        	  System.out.println("tempdate2:"+tempdate);
         	  String DayAndWeek = "";
     		  DayAndWeek += ChinaDayFormat.format(tempdate);
     		  DayAndWeek += " ";
@@ -99,12 +103,15 @@ public class ResponsePlanData {
               
               String start = (String) Class.forName(className).getMethod("getPlan_start_time").invoke(p);
               String end = (String) Class.forName(className).getMethod("getPlan_end_time").invoke(p);
+              int finish = (int) Class.forName(className).getMethod("getPlan_if_finish").invoke(p);
               String time = "";
               time += start;
-              time += "-";
-              time += end;
+              if(end != "") {
+              	time += "-";
+              	time += end;
+              }
               String content = (String) Class.forName(className).getMethod("getPlan_content").invoke(p);
-              T planMapper = (T) new PlanMapper(time, content);
+              T planMapper = (T) new PlanMapper(time, content, finish);
               dayList.add(planMapper);
           }
           date = EnglishFormat.format(d);
