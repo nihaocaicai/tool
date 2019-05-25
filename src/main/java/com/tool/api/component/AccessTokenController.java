@@ -44,6 +44,5 @@ public class AccessTokenController {
 		else {
 			RedisUtil.getJedis().set(key, value, "NX", "EX", 3600 * 2);
 		}
-		System.out.println("access_token: " + accesstoken);
 	}
 }
