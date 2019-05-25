@@ -15,7 +15,7 @@ public final class RedisUtil {
     private static int PORT = 6379;
 
     //访问密码
-    private static String AUTH = null;
+    private static String AUTH = "caicai";
 //            "caicai";
 
     //可用连接实例的最大数目，默认值为8；
