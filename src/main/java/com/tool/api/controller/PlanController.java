@@ -110,7 +110,7 @@ public class PlanController {
 		String plan_start_time = JSON.parseObject(user_plan_modify).getString("plan_start_time");
 		String plan_end_time = JSON.parseObject(user_plan_modify).getString("plan_end_time");
 		int plan_if_repeat = JSON.parseObject(user_plan_modify).getInteger("plan_if_repeat");
-		int plan_if_finish = JSON.parseObject(user_plan_modify).getInteger("plan_if_finsh");
+		int plan_if_finish = JSON.parseObject(user_plan_modify).getInteger("plan_if_finish");
 //    	根据信息去添加相关日记
 		planService.updatePlan(new Plan(plan_id,uid,plan_content,plan_date,plan_start_time,plan_end_time,plan_if_repeat,plan_if_finish));
 		return JSON.toJSONString(success("POST /user/plans/modify"));
@@ -126,9 +126,6 @@ public class PlanController {
 		int uid = Integer.parseInt(id);
 		List<Object> listpid = JSON.parseObject(batch_modify).getJSONArray("plan_id");
 		List<Object> listfinish = JSON.parseObject(batch_modify).getJSONArray("plan_if_finish");
-		System.out.println("uid" + uid);
-		System.out.println("listpid: " + listpid);
-		System.out.println("listfinish: " + listfinish);
 		
 		List<Plan> list = new ArrayList<Plan>();
 		int sizepid = listpid.size();

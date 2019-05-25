@@ -159,6 +159,7 @@ public class MainController {
 	public String planControllerAdd(@RequestHeader String token, @RequestBody String user_plan_add,
 			RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
+		System.out.println("user_plan_add:" + user_plan_add);
 		attr.addFlashAttribute("id", id);
 		attr.addFlashAttribute("user_plan_add", user_plan_add);
 		System.out.println(user_plan_add);
