@@ -46,9 +46,12 @@ public class MainController {
 //diaryController start
 	// 获取用户全部日记信息
 	@RequestMapping(value = "/v1/user/diarys/all", method = { RequestMethod.GET })
-	public String diaryControllerFindAll(@RequestHeader String token) {
+	public String diaryControllerFindAll(@RequestHeader String token, @RequestParam String page, RedirectAttributes attr) {
 		String id = RedisUtil.getJedis().get(token);
-		return "redirect:/user/diarys/all?id=" + id;
+		int pageSize = Integer.parseInt(page);
+		attr.addFlashAttribute("id", id);
+		attr.addFlashAttribute("pageSize", pageSize);
+		return "redirect:/user/diarys/all";
 	}
 
 	// 添加考研日记
