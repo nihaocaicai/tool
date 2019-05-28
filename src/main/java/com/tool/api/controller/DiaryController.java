@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
 import com.tool.api.utils.responseDataUtils.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,8 +26,10 @@ public class DiaryController {
     * */ 
     @RequestMapping(value = "/user/diarys/all",  produces="application/json;charset=UTF-8")
 	@ResponseBody
-	public String findUserById(String id) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
+	public String findUserById(@ModelAttribute("id") String id, @ModelAttribute("pageSize") int pageSize) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
 		int uid = Integer.parseInt(id);
+		//分页返回数据，currentPage为返回页数下标，pageSize为返回页数条数
+		PageHelper.startPage(1, pageSize*10);
 		List<Diary> diary = diaryService.findDiaryById(uid);
 //		加入转换的数据，类中所在的日期方法名,类的对象
 		List<HashMap<String, Object>> list = ResponseData.<Diary>responseData(diary,"getDiary_write_date",new Diary());
